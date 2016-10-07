@@ -16,6 +16,7 @@ public class SuperBb implements Serializable{
     // Bb 用スーパークラス
 
     // UserDetailBb と AddDataBb 用変数
+    // 変更
     private Integer user_id;
     private String name_kanji;
     private String name_kana;
