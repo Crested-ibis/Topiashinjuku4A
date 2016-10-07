@@ -16,24 +16,24 @@ public class SuperBb implements Serializable{
     // Bb 用スーパークラス
 
     // UserDetailBb と AddDataBb 用変数
-    private Integer user_id;
-    private String name_kanji;
-    private String name_kana;
-    private String tel;
-    private String email;
-    private String age;
-    private Boolean sex;
-    private String password;
-    private String register;
-    private Integer theater_info_id;
-    private Integer room_num;
-    private String movietitle;
-    private String showdate;
-    private String showtime;
-    private Integer seat_id;
+    protected Integer user_id;
+    protected String name_kanji;
+    protected String name_kana;
+    protected String tel;
+    protected String email;
+    protected String age;
+    protected Boolean sex;
+    protected String password;
+    protected String register;
+    protected Integer theater_info_id;
+    protected Integer room_num;
+    protected String movietitle;
+    protected String showdate;
+    protected String showtime;
+    protected Integer seat_id;
     
     //SeatBb 用変数
-    private Integer theater_id;
+    protected Integer theater_id;
 
     public Integer getUser_id() {
         return user_id;
