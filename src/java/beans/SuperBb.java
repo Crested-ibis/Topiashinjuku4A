@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
  * @author am
  */
-public class SuperBb implements Serializable{
+public class SuperBb implements Serializable {
     // Bb 用スーパークラス
 
     // UserDetailBb と AddDataBb 用変数
@@ -31,7 +25,7 @@ public class SuperBb implements Serializable{
     protected String showdate;
     protected String showtime;
     protected Integer seat_id;
-    
+
     //SeatBb 用変数
     protected Integer theater_id;
 
