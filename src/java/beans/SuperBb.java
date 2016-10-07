@@ -8,6 +8,8 @@ import java.io.Serializable;
  */
 public class SuperBb implements Serializable {
     // Bb 用スーパークラス
+    
+    //変更
 
     // UserDetailBb と AddDataBb 用変数
     protected Integer user_id;
