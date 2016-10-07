@@ -7,12 +7,8 @@ import java.io.Serializable;
  * @author am
  */
 public class SuperBb implements Serializable {
-    // Bb 用スーパークラス
-    
-    //変更
+    // DBAccess 用スーパークラス
 
-    // UserDetailBb と AddDataBb 用変数
-    protected Integer user_id;
     protected String name_kanji;
     protected String name_kana;
     protected String tel;
@@ -26,18 +22,6 @@ public class SuperBb implements Serializable {
     protected String movietitle;
     protected String showdate;
     protected String showtime;
-    protected Integer seat_id;
-
-    //SeatBb 用変数
-    protected Integer theater_id;
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
 
     public String getName_kanji() {
         return name_kanji;
@@ -143,19 +127,24 @@ public class SuperBb implements Serializable {
         this.showtime = showtime;
     }
 
-    public Integer getSeat_id() {
-        return seat_id;
+    public String goUsers() {
+        return "users.xhtml";
     }
 
-    public void setSeat_id(Integer seat_id) {
-        this.seat_id = seat_id;
+    public String goRegister() {
+        return "register.xhtml";
     }
 
-    public Integer getTheater_id() {
-        return theater_id;
+    public String goEdit() {
+        return "edit.xhtml";
     }
 
-    public void setTheater_id(Integer theater_id) {
-        this.theater_id = theater_id;
+    public String goIndex() {
+        return "index.xhtml";
     }
+
+    public String goSeat() {
+        return "select_seat.xhtml";
+    }
+
 }
