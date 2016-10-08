@@ -16,25 +16,24 @@
         <hr/>
         <h:form>
             <h:panelGrid columns="3">
-                ID <h:outputText value="ID" rendered="true"/>
-                <h:inputText value="ID" rendered="false"/><h:outputText value=""/>
-                名前（漢字）<h:outputText value="name_kana" rendered="true" /> 
-                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
-                名前（カナ）<h:outputText value="bb.tel" rendered="true" />
-                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
-                電話<h:outputText value="bb.tel" rendered="true" />
-                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
-                メール<h:outputText value="bb.e-mail" rendered="true" />
-                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例 xxxxx@gmail.com　○" />
-                生年月日　<h:outputText value="bb.age" rendered="true" />
-                <h:inputText value="2015-01-01" rendered="false"/><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
-                性別　<h:selectOneRadio value="#{bb.sex}">
-                    <f:selectItems value="#{bb.items_sex}"/>
-                </h:selectOneRadio><h:outputText value="どちらかを選択してください" />
-                パスワード<h:outputText value="bb.pass" rendered="true" /> 
-                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="何文字～何文字以内" />
-                登録日<h:outputText value="bb.register" rendered="true" />
-                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
+                ID <h:outputText value="ID"/> <h:outputText value="IDは自動生成"/>
+                名前（漢字）<h:outputText value="bb.name_kanji" rendered="#{!bb.is_editable_users}" /> 
+                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
+                名前（カナ）<h:outputText value="bb.name_kana" rendered="#{!bb.is_editable_users}" />
+                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
+                電話<h:outputText value="bb.tel" rendered="#{!bb.is_editable_users}" />
+                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
+                メール<h:outputText value="bb.e-mail" rendered="#{!bb.is_editable_users}" />
+                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例 xxxxx@gmail.com　○" />
+                生年月日　<h:outputText value="bb.age" rendered="#{!bb.is_editable_users}" />
+                <h:inputText value="#{bb.age}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
+                性別　<h:selectOneRadio value="#{bb.sex}" rendered="#{bb.is_editable_users}">
+                    <f:selectItems value="#{bb.items_sex}"/></h:selectOneRadio>
+                <h:outputText value="bb.sex" rendered="#{!bb.is_editable_users}"/><h:outputText value="どちらかを選択してください" />
+                パスワード<h:outputText value="bb.password" rendered="#{!bb.is_editable_users}" /> 
+                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="何文字～何文字以内" />
+                登録日<h:outputText value="bb.register" rendered="#{!bb.is_editable_users}" />
+                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
             </h:panelGrid>
             <h:panelGrid columns="4">
                 <h:commandButton value="アウトプット" action="#{bb.goOutput()}" />
