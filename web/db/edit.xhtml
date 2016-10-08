@@ -7,6 +7,7 @@
         <title>詳細ページ</title>
     </h:head>
     <h:body>
+        <h:form>
         <h1>○○様 詳細情報</h1>
         <h:panelGrid columns="2">
             ユーザ情報   <h:selectBooleanCheckbox value="on" onclick="submit()" />
@@ -37,7 +38,6 @@
             <h:commandButton value="クリア"/>
             <h:commandButton value="削除" />
         </h:panelGrid>
-
-
+        </h:form>
     </h:body>
 </html>
