@@ -128,15 +128,19 @@ public class SuperBb implements Serializable {
     }
 
     public String goUsers() {
-        return "users.xhtml";
+        return "db/users.xhtml";
     }
 
     public String goRegister() {
         return "register.xhtml";
     }
+    
+    public String goTheaters(){
+        return "db/theaters.xhtml";
+    }
 
     public String goEdit() {
-        return "edit.xhtml";
+        return "db/edit.xhtml";
     }
 
     public String goIndex() {

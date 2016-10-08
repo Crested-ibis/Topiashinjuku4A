@@ -6,10 +6,16 @@
         <title>上映方法</title>
     </h:head>
     <h:body>
-        | トップ | <a href="db/users.xhtml">ユーザ情報</a> | <a href="db/theaters.xhtml">上映情報</a> | <a href="db/edit.xhtml">詳細</a> |
+        <h:form>
+            <h:panelGrid columns="4">
+                <h:commandLink action="#{bb.goIndex()}">トップ</h:commandLink>    
+                <h:commandLink action="#{bb.goUsers()}">ユーザ情報</h:commandLink>
+                <h:commandLink action="#{bb.goTheaters()}">上映情報</h:commandLink>
+                <h:commandLink action="#{bb.goEdit()}">詳細</h:commandLink>
+            </h:panelGrid>
+        </h:form>
         <div>
-            上映情報　検索　
-                                      
+            上映情報　検索　                    
         </div>
     </h:body>
 </html>
