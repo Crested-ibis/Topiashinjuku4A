@@ -27,6 +27,61 @@ public class SuperBb implements Serializable {
     protected Boolean is_editable_users = false;
     protected Boolean is_editable_theaters = false;
 
+    protected static Map<String, String> items_users_field;
+    protected static Map<String, String> items_users_operator;
+    protected static Map<String, String> items_theators_field;
+    protected static Map<String, String> items_theators_operator;
+
+    static {
+        items_users_field = new LinkedHashMap<>();
+        items_users_field.put("ID", "user_id");
+        items_users_field.put("氏名（漢字）", "name_kanji");
+        items_users_field.put("氏名（カナ）", "name_kana");
+        items_users_field.put("電話番号", "tel");
+        items_users_field.put("メールアドレス", "email");
+        items_users_field.put("生年月日", "age");
+        items_users_field.put("性別", "sex");
+        items_users_field.put("登録日", "register");
+    }
+
+    public Map<String, String> getItems_users_field() {
+        return items_users_field;
+    }
+
+    static {
+        items_users_operator = new LinkedHashMap<>();
+        items_users_operator.put("を含む", "users_include");
+        items_users_operator.put("以上", "users_and_over");
+        items_users_operator.put("以下", "users_and_less");
+    }
+
+    public Map<String, String> getItems_users_operator() {
+        return items_users_operator;
+    }
+
+    static {
+        items_theators_field = new LinkedHashMap<>();
+        items_theators_field.put("ID", "theater_info_id");
+        items_theators_field.put("シアターNo", "room_num");
+        items_theators_field.put("映画タイトル", "movietitle");
+        items_theators_field.put("上映日時", "showtime");
+    }
+
+    public Map<String, String> getItems_theators_field() {
+        return items_theators_field;
+    }
+
+    static {
+        items_theators_operator = new LinkedHashMap<>();
+        items_theators_operator.put("を含む", "theaters_inclede");
+        items_theators_operator.put("以上", "theaters_and_over");
+        items_theators_operator.put("以下", "theaters_and_less");
+    }
+
+    public Map<String, String> getItems_theators_operator() {
+        return items_theators_operator;
+    }
+
     public Boolean getIs_editable_users() {
         return is_editable_users;
     }
@@ -192,6 +247,12 @@ public class SuperBb implements Serializable {
 
     public String goOutput() {
         return "db/output.xhtml";
+    }
+    
+    public String usersVarClear(){
+        name_kanji=name_kana=tel=email=age=sex=register=null;
+        
+        return null;
     }
 
 }
