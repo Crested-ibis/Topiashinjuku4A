@@ -132,7 +132,7 @@ public class SuperBb implements Serializable {
     }
 
     public String goRegister() {
-        return "register.xhtml";
+        return "db/register.xhtml";
     }
     
     public String goTheaters(){
@@ -148,7 +148,7 @@ public class SuperBb implements Serializable {
     }
 
     public String goSeat() {
-        return "select_seat.xhtml";
+        return "db/select_seat.xhtml";
     }
 
 }
