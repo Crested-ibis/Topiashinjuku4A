@@ -87,4 +87,37 @@ public class DBAccess extends SuperBb {
     public void setOperator_theaters(String operator_theaters) {
         this.operator_theaters = operator_theaters;
     }
+
+    private void init() {
+    }
+
+    public void addUser() {
+    }
+
+    public void updateUser() {
+    }
+
+    public void searchUsers() {
+    }
+
+    public void deleteUser() {
+    }
+
+    public void addTheater() {
+    }
+
+    public void updateTheater() {
+    }
+
+    public void searchTheaters() {
+    }
+
+    public void deleteTheater() {
+    }
+
+    public void getResultTheaters() {
+    }
+
+    public void getHasSeat() {
+    }
 }
