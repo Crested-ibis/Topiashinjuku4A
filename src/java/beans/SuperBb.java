@@ -24,8 +24,8 @@ public class SuperBb implements Serializable {
     protected String movietitle;
     protected String showdate;
     protected String showtime;
-    protected Boolean is_editable_users;
-    protected Boolean is_editable_theaters;
+    protected Boolean is_editable_users = false;
+    protected Boolean is_editable_theaters = false;
 
     public Boolean getIs_editable_users() {
         return is_editable_users;
