@@ -1,6 +1,8 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,7 +16,7 @@ public class SuperBb implements Serializable {
     protected String tel;
     protected String email;
     protected String age;
-    protected Boolean sex;
+    protected String sex;
     protected String password;
     protected String register;
     protected Integer theater_info_id;
@@ -22,6 +24,39 @@ public class SuperBb implements Serializable {
     protected String movietitle;
     protected String showdate;
     protected String showtime;
+    protected Boolean is_editable_users;
+    protected Boolean is_editable_theaters;
+
+    public Boolean getIs_editable_users() {
+        return is_editable_users;
+    }
+
+    public void setIs_editable_users(Boolean is_editable_users) {
+        this.is_editable_users = is_editable_users;
+    }
+
+    public Boolean getIs_editable_theaters() {
+        return is_editable_theaters;
+    }
+
+    public void setIs_editable_theaters(Boolean is_editable_theaters) {
+        this.is_editable_theaters = is_editable_theaters;
+    }
+    protected static Map<String, String> items_sex;
+
+    static {
+        items_sex = new LinkedHashMap<>();
+        items_sex.put("男性", "male");
+        items_sex.put("女性", "female");
+    }
+
+    public Map<String, String> getItems_sex() {
+        return items_sex;
+    }
+
+    public void setItems_sex(Map<String, String> items_sex) {
+        SuperBb.items_sex = items_sex;
+    }
 
     public String getName_kanji() {
         return name_kanji;
@@ -63,12 +98,16 @@ public class SuperBb implements Serializable {
         this.age = age;
     }
 
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
-        this.sex = sex;
+    public void setSex(String sex) {
+        if (sex.equals("male")) {
+            this.sex = "男";
+        } else {
+            this.sex = "女";
+        }
     }
 
     public String getPassword() {
@@ -134,8 +173,8 @@ public class SuperBb implements Serializable {
     public String goRegister() {
         return "db/register.xhtml";
     }
-    
-    public String goTheaters(){
+
+    public String goTheaters() {
         return "db/theaters.xhtml";
     }
 
@@ -149,6 +188,10 @@ public class SuperBb implements Serializable {
 
     public String goSeat() {
         return "db/select_seat.xhtml";
+    }
+
+    public String goOutput() {
+        return "db/output.xhtml";
     }
 
 }

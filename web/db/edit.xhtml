@@ -8,41 +8,40 @@
     </h:head>
     <h:body>
         <h:form>
-        <h1>○○様 詳細情報</h1>
-        <!--<h:panelGrid columns="2">-->
-            <!--ユーザ情報   <h:selectBooleanCheckbox value="" onclick="submit()" />-->
-        <!--</h:panelGrid>-->
-        ユーザ情報
-        <h:selectBooleanCheckbox value="" onclick="submit()" />
+            <h1>○○様 詳細情報</h1>
+            <h:panelGrid columns="2">
+                ユーザ情報   <h:selectBooleanCheckbox value="#{bb.is_editable_users}" onclick="submit()" />
+            </h:panelGrid>
         </h:form>
         <hr/>
-<!--        <h:form>
-        <h:panelGrid columns="3">
-            ID <h:outputText value="ID" rendered="true"/>
-            <h:inputText value="ID" rendered="false"/><h:outputText value=""/>
-            名前（漢字）<h:outputText value="name_kana" rendered="true" /> 
-            <h:inputText value="name_kanji" rendered="false"/><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
-            名前（カナ）<h:outputText value="bb.tel" rendered="true" />
-            <h:inputText value="name_kanji" rendered="false"/><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
-            電話<h:outputText value="bb.tel" rendered="true" />
-            <h:inputText value="name_kanji" rendered="false"/><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
-            メール<h:outputText value="bb.e-mail" rendered="true" />
-            <h:inputText value="name_kanji" rendered="false"/><h:outputText value="例 xxxxx@gmail.com　○" />
-            生年月日　<h:outputText value="bb.age" rendered="true" />
-            <h:inputText value="2015-01-01" rendered="false"/><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
-            性別　<h:selectOneRadio value="">
-                <f:selectItems value=""/>
-            </h:selectOneRadio><h:outputText value="どちらかを選択してください" />
-            パスワード<h:outputText value="bb.pass" rendered="true" /> 
-            <h:inputText value="name_kanji" rendered="false"/><h:outputText value="何文字～何文字以内" />
-            登録日<h:outputText value="bb.register" rendered="true" />
-            <h:inputText value="name_kanji" rendered="false"/><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
-        </h:panelGrid>
-        <h:panelGrid columns="3">
-            <h:commandButton value="更新" />
-            <h:commandButton value="クリア"/>
-            <h:commandButton value="削除" />
-        </h:panelGrid>
-        </h:form>-->
+        <h:form>
+            <h:panelGrid columns="3">
+                ID <h:outputText value="ID" rendered="true"/>
+                <h:inputText value="ID" rendered="false"/><h:outputText value=""/>
+                名前（漢字）<h:outputText value="name_kana" rendered="true" /> 
+                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
+                名前（カナ）<h:outputText value="bb.tel" rendered="true" />
+                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
+                電話<h:outputText value="bb.tel" rendered="true" />
+                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
+                メール<h:outputText value="bb.e-mail" rendered="true" />
+                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例 xxxxx@gmail.com　○" />
+                生年月日　<h:outputText value="bb.age" rendered="true" />
+                <h:inputText value="2015-01-01" rendered="false"/><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
+                性別　<h:selectOneRadio value="#{bb.sex}">
+                    <f:selectItems value="#{bb.items_sex}"/>
+                </h:selectOneRadio><h:outputText value="どちらかを選択してください" />
+                パスワード<h:outputText value="bb.pass" rendered="true" /> 
+                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="何文字～何文字以内" />
+                登録日<h:outputText value="bb.register" rendered="true" />
+                <h:inputText value="#{bb.name_kanji}" rendered="false"/><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
+            </h:panelGrid>
+            <h:panelGrid columns="4">
+                <h:commandButton value="アウトプット" action="#{bb.goOutput()}" />
+                <h:commandButton value="更新" />
+                <h:commandButton value="クリア"/>
+                <h:commandButton value="削除" />
+            </h:panelGrid>
+        </h:form>
     </h:body>
 </html>
