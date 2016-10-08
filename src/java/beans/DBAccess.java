@@ -103,6 +103,9 @@ public class DBAccess extends SuperBb {
     public void deleteUser() {
     }
 
+    public void getResultUsers() {
+    }
+
     public void addTheater() {
     }
 
