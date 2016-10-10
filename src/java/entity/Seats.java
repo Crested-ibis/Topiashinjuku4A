@@ -17,30 +17,20 @@ import javax.persistence.Table;
  * @author melli
  */
 @Entity
-@Table(name="seat_info")
+@Table(name = "seat_info")
 public class Seats implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Boolean hasSeat;
+    private Boolean[] hasSeat;
 
-    public Integer getId() {
-        return id;
+    public Seats() {
+//        コンストラクタ起動時に配列の中身を制作し、全てfalseにする
+        hasSeat = new Boolean[100];
+        for (boolean seat : hasSeat) {
+            seat = false;
+        }
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Boolean getHasSeat() {
-        return hasSeat;
-    }
-
-    public void setHasSeat(Boolean hasSeat) {
-        this.hasSeat = hasSeat;
-    }
-    
-
-    
 }

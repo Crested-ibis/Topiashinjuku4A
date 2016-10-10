@@ -10,25 +10,25 @@
         <h:form>
             <h:panelGrid columns="3">
                 名前（漢字）
-                <h:inputText value="name_kanji" /><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
+                <h:inputText value="#{bb.name_kanji}" /><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
                 名前（カナ）
-                <h:inputText value="name_kanji" /><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
+                <h:inputText value="#{bb.name_kana}" /><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
                 電話
-                <h:inputText value="name_kanji" /><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
+                <h:inputText value="#{bb.tel}" /><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
                 メール
-                <h:inputText value="name_kanji" /><h:outputText value="例 xxxxx@gmail.com　○" />
+                 <h:inputText value="#{bb.email}" /><h:outputText value="例 xxxxx@gmail.com　○" />
                 生年月日
-                <h:inputText value="2015-01-01" /><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
-                性別　<h:selectOneRadio value="">
+                <h:inputText value="#{bb.age}" /><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
+                性別　<h:selectOneRadio value="#{bb.sex}">
                     <f:selectItems value="#{bb.items_sex}"/>
                 </h:selectOneRadio><h:outputText value="どちらかを選択してください" />
                 パスワード
-                <h:inputText value="name_kanji" /><h:outputText value="何文字～何文字以内" />
+                <h:inputText value="#{bb.password}" /><h:outputText value="何文字～何文字以内" />
                 登録日
-                <h:inputText value="name_kanji" /><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
+                <h:inputText value="#{bb.register}" /><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
             </h:panelGrid>
             <h:panelGrid columns="3">
-                <h:commandButton action="" value="登録" />
+                <h:commandButton action="#{bb.addUser()}" value="登録" />
                 <h:commandButton value="クリア"/>
             </h:panelGrid>
         </h:form>

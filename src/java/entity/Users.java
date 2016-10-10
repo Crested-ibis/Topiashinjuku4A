@@ -6,10 +6,12 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,9 +30,39 @@ public class Users implements Serializable {
     private String tel;
     private String email;
     private String age;
-    private Boolean sex;
+    private String sex;
     private String password;
     private String register;
+    
+    @ManyToMany(mappedBy = "users")
+    private List<Theaters> theaterses;
+
+    public Users() {
+    }
+
+    public Users(String name_kanji, String name_kana, String tel, String email, String age, String sex, String password, String register) {
+        this.name_kanji = name_kanji;
+        this.name_kana = name_kana;
+        this.tel = tel;
+        this.email = email;
+        this.age = age;
+        this.sex = sex;
+        this.password = password;
+        this.register = register;
+    }
+
+    public Users(String name_kanji, String name_kana, String tel, String email, String age, String sex, String password, String register, List<Theaters> theaterses) {
+        this.name_kanji = name_kanji;
+        this.name_kana = name_kana;
+        this.tel = tel;
+        this.email = email;
+        this.age = age;
+        this.sex = sex;
+        this.password = password;
+        this.register = register;
+        this.theaterses = theaterses;
+    }
+    
     
 
     public String getName_kanji() {
@@ -73,14 +105,6 @@ public class Users implements Serializable {
         this.age = age;
     }
 
-    public Boolean getSex() {
-        return sex;
-    }
-
-    public void setSex(Boolean sex) {
-        this.sex = sex;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -103,6 +127,14 @@ public class Users implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
 }

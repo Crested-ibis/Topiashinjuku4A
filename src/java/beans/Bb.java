@@ -14,7 +14,8 @@ public class Bb extends DBAccess {
     public Bb() {
     }
 
-    private void initDetailPage() {
+    private void initRegisterPage() {
+        
     }
 
     private void RegisterPage() {

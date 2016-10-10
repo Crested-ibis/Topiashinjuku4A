@@ -1,7 +1,12 @@
 package beans;
 
+import db.SeatsDb;
+import db.TheatersDb;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.ejb.EJB;
+import db.UsersDb;
+import entity.Users;
 
 /**
  *
@@ -77,6 +82,13 @@ public class DBAccess extends SuperBb {
         return items_theators_operator;
     }
 
+    @EJB
+    UsersDb usersDb;
+    @EJB
+    TheatersDb theatersDb;
+    @EJB
+    SeatsDb seatsDb;
+    
     public Integer getUser_id() {
         return user_id;
     }
@@ -153,9 +165,12 @@ public class DBAccess extends SuperBb {
     }
 
     public void addUser() {
+        Users user = new Users(name_kanji, name_kana, tel, email, age, sex, password, register);
+        usersDb.add(user);
     }
 
     public void updateUser() {
+        
     }
 
     public void searchUsers() {
