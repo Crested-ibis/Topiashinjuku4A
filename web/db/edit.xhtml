@@ -9,37 +9,63 @@
     <h:body>
         <h:form>
             <h1>○○様 詳細情報</h1>
+            <hr/>
             <h:panelGrid columns="2">
                 ユーザ情報   <h:selectBooleanCheckbox value="#{bb.is_editable_users}" onclick="submit()" />
             </h:panelGrid>
         </h:form>
-        <hr/>
         <h:form>
             <h:panelGrid columns="3">
-                ID <h:outputText value="ID"/> <h:outputText value="IDは自動生成"/>
+                ID <h:outputText value="bb.user_id"/> <h:outputText value="IDは自動生成"/>
                 名前（漢字）<h:outputText value="bb.name_kanji" rendered="#{!bb.is_editable_users}" /> 
                 <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
                 名前（カナ）<h:outputText value="bb.name_kana" rendered="#{!bb.is_editable_users}" />
-                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
+                <h:inputText value="#{bb.name_kana}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
                 電話<h:outputText value="bb.tel" rendered="#{!bb.is_editable_users}" />
-                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
-                メール<h:outputText value="bb.e-mail" rendered="#{!bb.is_editable_users}" />
-                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例 xxxxx@gmail.com　○" />
+                <h:inputText value="#{bb.tel}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
+                メール<h:outputText value="bb.email" rendered="#{!bb.is_editable_users}" />
+                <h:inputText value="#{bb.email}" rendered="#{bb.is_editable_users}"/><h:outputText value="例 xxxxx@gmail.com　○" />
                 生年月日　<h:outputText value="bb.age" rendered="#{!bb.is_editable_users}" />
                 <h:inputText value="#{bb.age}" rendered="#{bb.is_editable_users}"/><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
                 性別　<h:selectOneRadio value="#{bb.sex}" rendered="#{bb.is_editable_users}">
                     <f:selectItems value="#{bb.items_sex}"/></h:selectOneRadio>
                 <h:outputText value="bb.sex" rendered="#{!bb.is_editable_users}"/><h:outputText value="どちらかを選択してください" />
                 パスワード<h:outputText value="bb.password" rendered="#{!bb.is_editable_users}" /> 
-                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="何文字～何文字以内" />
+                <h:inputText value="#{bb.password}" rendered="#{bb.is_editable_users}"/><h:outputText value="何文字～何文字以内" />
                 登録日<h:outputText value="bb.register" rendered="#{!bb.is_editable_users}" />
-                <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}"/><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
+                <h:inputText value="#{bb.register}" rendered="#{bb.is_editable_users}"/><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
             </h:panelGrid>
             <h:panelGrid columns="4">
                 <h:commandButton value="アウトプット" action="#{bb.goOutput()}" />
-                <h:commandButton value="更新" />
-                <h:commandButton value="クリア"/>
-                <h:commandButton value="削除" />
+                <h:commandButton value="更新" action="#{bb.updateUser()}"/>
+                <h:commandButton value="クリア" action="#{bb.usersVarClear()}"/>
+                <h:commandButton value="削除" action="#{bb.deleteUser()}"/>
+            </h:panelGrid>
+        </h:form>
+        <hr/>
+        <h:form>
+            <h:panelGrid columns="2">
+                予約情報   <h:selectBooleanCheckbox value="#{bb.is_editable_theaters}" onclick="submit()" />
+            </h:panelGrid>
+            <h:panelGrid columns="3">
+                ID
+                <h:outputText value="bb.theater_info_id"/> <h:outputText/>
+                シアターNo
+                <h:outputText value="bb.room_num" rendered="#{!bb.is_editable_theaters}"/> <h:inputText value="#{bb.room_num}" rendered="#{bb.is_editable_theaters}"/> <h:outputText/>
+                映画タイトル
+                <h:outputText value="bb.movietitle" rendered="#{!bb.is_editable_theaters}"/> <h:inputText value="#{bb.movietitle}" rendered="#{bb.is_editable_theaters}"/> <h:outputText/>
+                日付
+                <h:outputText value="bb.showdate" rendered="#{!bb.is_editable_theaters}"/> <h:inputText value="#{bb.showdate}" rendered="#{bb.is_editable_theaters}"/> <h:outputText value="例　2015/1/1　×　2015-01-01 ○"/>
+                上映開始時間
+                <h:outputText value="bb.showtime" rendered="#{!bb.is_editable_theaters}"/> <h:inputText value="#{bb.showtime}" rendered="#{bb.is_editable_theaters}"/> <h:outputText value="例　900　×　9:00 ○"/>
+                席
+                <h:outputText value="bb.seat_id" rendered="#{!bb.is_editable_theaters}"/> <h:inputText value="#{bb.seat_id}" rendered="#{bb.is_editable_theaters}"/> <h:outputText/>
+            </h:panelGrid>
+            <h:panelGrid columns="4">
+                <h:commandButton value="アウトプット" action="#{bb.goOutput()}" />
+                <h:commandButton value="更新" action="#{bb.updateTheater()}"/>
+                <h:commandButton value="クリア" action="#{bb.theatersVarClear()}"/>
+                <h:commandButton value="削除" action="#{bb.deleteTheater()}"/>
             </h:panelGrid>
         </h:form>
     </h:body>

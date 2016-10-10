@@ -249,10 +249,9 @@ public class SuperBb implements Serializable {
     public String goOutput() {
         return "output.xhtml";
     }
-    
-    public String usersVarClear(){
-        name_kanji=name_kana=tel=email=age=sex=register=null;
-        
+
+    public String usersVarClear() {
+        name_kanji = name_kana = tel = email = age = sex = register = null;
         return null;
     }
 

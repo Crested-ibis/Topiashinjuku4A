@@ -6,8 +6,23 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <h2>変数確認用ページ</h2>
         <h:panelGrid columns="1">
+            <h:outputText value="userVar"/>
+            <h:outputText value="#{bb.name_kanji}"/>
+            <h:outputText value="#{bb.name_kana}"/>
+            <h:outputText value="#{bb.tel}"/>
+            <h:outputText value="#{bb.email}"/>
+            <h:outputText value="#{bb.age}"/>
             <h:outputText value="#{bb.sex}"/>
+            <h:outputText value="#{bb.password}"/>
+            <h:outputText value="#{bb.register}"/>
+            <hr/>
+            <h:outputText value="theaterVar"/>
+            <h:outputText value="#{bb.room_num}"/>
+            <h:outputText value="#{bb.movietitle}"/>
+            <h:outputText value="#{bb.showdate}"/>
+            <h:outputText value="#{bb.showtime}"/>
         </h:panelGrid>
     </h:body>
 </html>

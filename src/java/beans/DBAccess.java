@@ -63,10 +63,10 @@ public class DBAccess extends SuperBb {
     public Map<String, String> getItems_theators_field() {
         return items_theators_field;
     }
-    
+
     protected static Map<String, String> items_theators_operator;
-    
-    static{
+
+    static {
         items_theators_operator = new LinkedHashMap<>();
         items_theators_operator.put("を含む", "theaters_inclede");
         items_theators_operator.put("以上", "theaters_and_over");
@@ -76,7 +76,6 @@ public class DBAccess extends SuperBb {
     public Map<String, String> getItems_theators_operator() {
         return items_theators_operator;
     }
-    
 
     public Integer getUser_id() {
         return user_id;
@@ -185,4 +184,11 @@ public class DBAccess extends SuperBb {
 
     public void getHasSeat() {
     }
+
+    public String theatersVarClear() {
+        theater_info_id = room_num = seat_id = null;
+        movietitle = showdate = showtime = null;
+        return null;
+    }
+
 }
