@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,8 @@ public class Users implements Serializable {
     private String password;
     private String register;
     
-    @ManyToMany(mappedBy = "users")
+    // UsersエンティティはTheatersエンティティに対するすべての権限を持つ
+    @ManyToMany(mappedBy = "users",cascade = {CascadeType.ALL})
     private List<Theaters> theaterses;
 
     public Users() {
@@ -136,5 +138,14 @@ public class Users implements Serializable {
     public void setSex(String sex) {
         this.sex = sex;
     }
+
+    public List<Theaters> getTheaterses() {
+        return theaterses;
+    }
+
+    public void setTheaterses(List<Theaters> theaterses) {
+        this.theaterses = theaterses;
+    }
+    
 
 }
