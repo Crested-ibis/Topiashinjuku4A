@@ -245,8 +245,9 @@ public class SuperBb implements Serializable {
         return "db/select_seat.xhtml";
     }
 
+    // テストページ用
     public String goOutput() {
-        return "db/output.xhtml";
+        return "output.xhtml";
     }
     
     public String usersVarClear(){
