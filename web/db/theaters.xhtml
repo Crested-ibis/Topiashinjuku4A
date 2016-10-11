@@ -23,7 +23,6 @@
             </h:selectOneMenu>
             <h:commandButton value="検索" action="#{myBb.find()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
         </h:form>
-        <!--結果-->
         <h:dataTable value="#{bb.allTheaters}" var="th">
             <f:facet name="header">検索結果</f:facet>
             <h:column>
@@ -49,9 +48,11 @@
 
             <h:column>
                 <f:facet name="header">座席</f:facet>
-                <h:dataTable value="#{th.hasSeats}" var="b">
-                    <h:outputText value="■" rendered="#{b}"/>
-                    <h:outputText value="□" rendered="#{!b}"/>
+                <h:dataTable value="#{th.seatses}" var="s">
+                    <h:column>
+                        <h:outputText value="■" rendered="#{s.hasSeat}"/>
+                        <h:outputText value="□" rendered="#{!s.hasSeat}"/>
+                    </h:column>
                 </h:dataTable>
             </h:column>
         </h:dataTable>

@@ -2,6 +2,8 @@ package beans;
 
 import entity.Theaters;
 import entity.Users;
+import entity.Seats;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -20,24 +22,34 @@ public class Bb extends DBAccess {
 
     @PostConstruct
     private void init() {
+        // 入れ子構造で登録する
         Users u = new Users("斎藤 隆", "サイトウ タカシ", "042-565-2967", "takashi_revolution@ezweb.ne.jp", "1976-01-01", "男 ", "abcd9999", "2016-10-10");
         usersDb.add(u);
 
-        hasSeats = new Boolean[100];
-        for (Boolean seat : hasSeats) {
-            seat = false;
-        }
-        int[] num = {2, 3, 5, 10, 12, 30, 50, 70, 90, 99};
-        for (int n : num) {
-            hasSeats[n] = true;
-        }
-        Theaters th = new Theaters(4, "渚にて", "1958-07-31", "12:00", hasSeats, u);
+        Theaters th = new Theaters(4, "渚にて", "1958-07-31", "12:00", u);
 
+        // thにおけるList<Seats>を先に入れる
+        List<Seats> ls = th.getSeatses();
+
+        Seats s = null;
+        for (int i = 0; i < 100; i++) {
+            s = new Seats(false, th);
+            ls.add(s);
+        }
+
+        s = new Seats(true, th);
+        int[] nums = {0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 50, 51, 52, 53};
+        for (int num : nums) {
+            ls.set(num, s);
+        }
+
+        // uにおけるList<Theaters>を入れる
         List<Theaters> li = u.getTheaterses();
         li.add(th);
 
         usersDb.update(u);
         li.clear();
+
     }
 
     private void initRegisterPage() {

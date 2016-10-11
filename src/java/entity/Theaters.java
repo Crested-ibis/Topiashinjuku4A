@@ -6,10 +6,14 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,39 +31,55 @@ public class Theaters implements Serializable {
     private String movietitle;
     private String showdate;
     private String showtime;
-    private Boolean[] hasSeats;
 
     private Users users;
 
+    @OneToMany(mappedBy = "theaters",cascade = {CascadeType.ALL})
+    private List<Seats> seatses;
+    
     public Theaters() {
     }
 
         // 編集用のID付きコンストラクタ。Usersは編集しない
-    public Theaters(Integer id, Integer room_num, String movietitle, String showdate, String showtime, Boolean[] hasSeats) {
+    public Theaters(Integer id, Integer room_num, String movietitle, String showdate, String showtime) {
         this.id = id;
         this.room_num = room_num;
         this.movietitle = movietitle;
         this.showdate = showdate;
         this.showtime = showtime;
-        this.hasSeats = hasSeats;
+
     }
 
 
-    public Theaters(Integer room_num, String movietitle, String showdate, String showtime, Boolean[] hasSeats, Users users) {
-        // コンストラクタ起動時に中身を作り、全てfalseにする。
-        // booleanではなくbooleanなので、初期値がfalseではなくnullになるはずなので
-        hasSeats = new Boolean[100];
-        for (Boolean seat : hasSeats) {
-            seat = false;
-        }
+    public Theaters(Integer room_num, String movietitle, String showdate, String showtime,Users users) {
+        this.seatses = new ArrayList<>();
 
         this.room_num = room_num;
         this.movietitle = movietitle;
         this.showdate = showdate;
         this.showtime = showtime;
-        this.hasSeats = hasSeats;
         this.users = users;
     }
+
+    /**
+     * インスタンス化時にList<Seats>を予め入れておく場合
+     * @param room_num
+     * @param movietitle
+     * @param showdate
+     * @param showtime
+     * @param users
+     * @param seatses 
+     */
+    public Theaters(Integer room_num, String movietitle, String showdate, String showtime, Users users, List<Seats> seatses) {
+        this.room_num = room_num;
+        this.movietitle = movietitle;
+        this.showdate = showdate;
+        this.showtime = showtime;
+        this.users = users;
+        this.seatses = seatses;
+    }
+    
+    
 
     public Integer getId() {
         return id;
@@ -101,13 +121,6 @@ public class Theaters implements Serializable {
         this.showtime = showtime;
     }
 
-    public Boolean[] getHasSeats() {
-        return hasSeats;
-    }
-
-    public void setHasSeats(Boolean[] hasSeats) {
-        this.hasSeats = hasSeats;
-    }
 
     public Users getUsers() {
         return users;
@@ -117,4 +130,11 @@ public class Theaters implements Serializable {
         this.users = users;
     }
 
+    public List<Seats> getSeatses() {
+        return seatses;
+    }
+
+    public void setSeatses(List<Seats> seatses) {
+        this.seatses = seatses;
+    }
 }
