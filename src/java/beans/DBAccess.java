@@ -10,6 +10,7 @@ import entity.Theaters;
 import entity.Users;
 import java.util.ArrayList;
 import java.util.List;
+import beans.UsersManager;
 
 /**
  *
@@ -37,6 +38,9 @@ public class DBAccess extends SuperBb {
     TheatersDb theatersDb;
     @EJB
     SeatsDb seatsDb;
+    
+    @EJB
+    UsersManager um;
 
     public DBAccess() {
         super();
@@ -63,8 +67,8 @@ public class DBAccess extends SuperBb {
     public void deleteUser() {
     }
 
-    public List<Users> getResultUsers() {
-        ;
+    public List<Users> getResultUsers() {        
+        return um.getFromDb(field_users, search_users, operator_users);
     }
 
     public void addTheater() {

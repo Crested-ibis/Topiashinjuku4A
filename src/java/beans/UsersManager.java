@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import entity.Users;
 import javax.persistence.TypedQuery;
+
 /**
  *
  * @author melli
@@ -18,13 +19,20 @@ import javax.persistence.TypedQuery;
 
 @Stateless
 public class UsersManager {
+
     @PersistenceContext
     EntityManager em;
-    
-    public List<Users> getFromDb (String field_users, String search_users, String operator_users){
-        String sql = "select c from Users c where " + field_users + " = " + search_users
-        
+
+    public List<Users> getFromDb(String field_users, String search_users, String operator_users) {
         TypedQuery<Users> query = null;
+        if (operator_users.equals("like")) {
+             query = em.createNamedQuery("select c from Users c where c.kind=:valueOfKind",Users.class);
+        } else {
+
+        }
+        query.setParameter("valueOfKind", search_users);
         
+        return query.getResultList();
+
     }
 }
