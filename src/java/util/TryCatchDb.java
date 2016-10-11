@@ -35,7 +35,7 @@ public class TryCatchDb<T> extends SuperDb{
 	}
 	
 	public List<T> getAll() {
-		return	findAll();
+		return	getAll();
 	}
 
 }

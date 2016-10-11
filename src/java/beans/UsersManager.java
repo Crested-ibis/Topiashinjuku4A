@@ -10,7 +10,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import entity.Users;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
 /**
  *
  * @author melli
@@ -18,13 +20,25 @@ import javax.persistence.TypedQuery;
 
 @Stateless
 public class UsersManager {
+
     @PersistenceContext
     EntityManager em;
+
+    public List<Users> getFromDb(String field_users, String search_users, String operator_users) {
+//        TypedQuery<Users> query = null;
+//        if (operator_users.equals("like")) {
+            Query query = em.createQuery("select c from Users c where c.email like '%mail%'");
+//        } else {
+
+//        }
+//        query.setParameter("valueOfKind", search_users);
+        
+        return query.getResultList();
+    }
     
-    public List<Users> getFromDb (String field_users, String search_users, String operator_users){
-        String sql = "select c from Users c where " + field_users + " = " + search_users
-        
-        TypedQuery<Users> query = null;
-        
+    public List<Users> getAllUsers(){
+        Query q = em.createQuery("select c from Users c");
+        List<Users> ls = q.getResultList();
+        return ls;
     }
 }

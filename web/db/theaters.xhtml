@@ -10,45 +10,46 @@
     </h:head>
     <h1>シアター情報</h1>
     <h:body>
-<!--検索-->
-上映情報 　　　<h:outputText value="検索"/> <h:selectOneMenu value="#{bb.field_theaters}" >
-     <f:selectItem itemLabel="選択してください" itemValue=""/>
-     <f:selectItems value="#{bb.items_theaters_field}" /> 
- </h:selectOneMenu>
-        <h:inputText value="" p:placeholder="検索"/>
-        <h:selectOneMenu value="#{bb.operator_theaters}" >
-     <f:selectItem itemLabel="選択してください" itemValue=""/>
-     <f:selectItems value="#{bb.items_theaters_operator}" /> 
- </h:selectOneMenu>
-        <h:commandButton value="検索" action="#{myBb.find()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
-        
-<!--結果-->
-<h:dataTable value="ここに検索結果のbbを入れる" var="user">
-    <f:facet name="header">検索結果</f:facet>
-    <h:column>
-        <f:facet name="header">上映ID</f:facet>
-        <h:outputText value="#{bb.theater_info_id}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">シアターNo</f:facet>
-        <h:outputText value="#{bb.room_num}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">映画タイトル</f:facet>
-        <h:outputText value="#{bb.movietitle}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">上映日時</f:facet>
-        <h:outputText value="#{bb.showdate}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">上映時間</f:facet>
-        <h:outputText value="#{bb.showtime}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">座席</f:facet>
-        <h:outputText value="#{bb.seat_id}"/>
-    </h:column>
-</h:dataTable>
+        <!--検索-->
+        <h:form>
+            上映情報 　　　<h:outputText value="検索"/> <h:selectOneMenu value="#{bb.field_theaters}" >
+                <f:selectItem itemLabel="選択してください" itemValue=""/>
+                <f:selectItems value="#{bb.items_theaters_field}" /> 
+            </h:selectOneMenu>
+            <h:inputText value="" p:placeholder="検索"/>
+            <h:selectOneMenu value="#{bb.operator_theaters}" >
+                <f:selectItem itemLabel="選択してください" itemValue=""/>
+                <f:selectItems value="#{bb.items_theaters_operator}" /> 
+            </h:selectOneMenu>
+            <h:commandButton value="検索" action="#{myBb.find()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
+        </h:form>
+        <!--結果-->
+        <h:dataTable value="ここに検索結果のbbを入れる" var="user">
+            <f:facet name="header">検索結果</f:facet>
+            <h:column>
+                <f:facet name="header">上映ID</f:facet>
+                <h:outputText value="#{bb.theater_info_id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">シアターNo</f:facet>
+                <h:outputText value="#{bb.room_num}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">映画タイトル</f:facet>
+                <h:outputText value="#{bb.movietitle}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">上映日時</f:facet>
+                <h:outputText value="#{bb.showdate}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">上映時間</f:facet>
+                <h:outputText value="#{bb.showtime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">座席</f:facet>
+                <h:outputText value="#{bb.seat_id}"/>
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>

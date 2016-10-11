@@ -32,7 +32,7 @@ public abstract class SuperDb<T> {
 		return em.find(entityClass, id);
 	}
 
-	public List<T> findAll() {
+	public List<T> getAll() {
 		javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
 		cq.select(cq.from(entityClass));
 		return em.createQuery(cq).getResultList();

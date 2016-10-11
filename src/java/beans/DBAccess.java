@@ -10,6 +10,7 @@ import entity.Theaters;
 import entity.Users;
 import java.util.ArrayList;
 import java.util.List;
+import beans.UsersManager;
 
 /**
  *
@@ -38,6 +39,9 @@ public class DBAccess extends SuperBb {
     @EJB
     SeatsDb seatsDb;
 
+    @EJB
+    UsersManager um;
+
     public DBAccess() {
         super();
     }
@@ -56,6 +60,10 @@ public class DBAccess extends SuperBb {
 
     }
 
+    public List<Users> getAllUsers() {
+        return um.getAllUsers();
+    }
+
     public void searchUsers() {
         result_user = (Users) usersDb.find(theater_info_id);
     }
@@ -64,7 +72,12 @@ public class DBAccess extends SuperBb {
     }
 
     public List<Users> getResultUsers() {
-        ;
+        if (search_users != null) {
+            return um.getFromDb(field_users, search_users, operator_users);
+        } else {
+            return null;
+        }
+
     }
 
     public void addTheater() {

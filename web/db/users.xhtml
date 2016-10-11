@@ -9,54 +9,56 @@
         <title>ユーザ情報</title>
     </h:head>
     <h:body>
-<!--検索ー-->
-ユーザ情報 <h:outputText value="検索"/>
-<h:selectOneMenu value="#{bb.field_users}" >
-     <f:selectItem itemLabel="選択してください" itemValue=""/>
-     <f:selectItems value="#{bb.items_users_field}" /> 
- </h:selectOneMenu>
-        <h:inputText value="" p:placeholder="入力してください"/>
-        <h:selectOneMenu value="#{bb.operator_users}" >
-     <f:selectItem itemLabel="選択してください" itemValue=""/>
-     <f:selectItems value="#{bb.items_users_operator}" /> 
- </h:selectOneMenu>
-      <h:commandButton value="検索" action="#{myBb.find}"/><h:commandButton value="新規登録" action="#{myBb.next()}"/>
-<!--結果-->
-<h:dataTable value="" var="user">
-    <f:facet name="header">検索結果</f:facet>
-    <h:column>
-        <f:facet name="header">ID</f:facet>
-        <h:outputText value="#{bb.user_id}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">名前（漢字）</f:facet>
-        <h:outputText value="#{bb.name_kanji}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">名前（カナ）</f:facet>
-        <h:outputText value="#{bb.name_kana}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">電話番号</f:facet>
-        <h:outputText value="#{bb.tel}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">メールアドレス</f:facet>
-        <h:outputText value="#{bb.email}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">生年月日</f:facet>
-        <h:outputText value="#{bb.age}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">性別</f:facet>
-        <h:outputText value="#{bb.sex}"/>
-    </h:column>
-    <h:column>
-        <f:facet name="header">登録日</f:facet>
-        <h:outputText value="#{bb.register}"/>
-    </h:column>
-</h:dataTable>
+        <!--検索ー-->
+        <h:form>
+            ユーザ情報 <h:outputText value="検索"/>
+            <h:selectOneMenu value="#{bb.field_users}" >
+                <f:selectItem itemLabel="選択してください" itemValue=""/>
+                <f:selectItems value="#{bb.items_users_field}" /> 
+            </h:selectOneMenu>
+            <h:inputText value="#{bb.search_users}" p:placeholder="入力してください"/>
+            <h:selectOneMenu value="#{bb.operator_users}" >
+                <f:selectItem itemLabel="選択してください" itemValue=""/>
+                <f:selectItems value="#{bb.items_users_operator}" /> 
+            </h:selectOneMenu>
+            <h:commandButton value="検索" action="#{bb.doSearchUsers()}"/><h:commandButton value="新規登録" action="#{myBb.next()}"/>
+        </h:form>
+        <!--結果-->
+        <h:dataTable value="#{bb.resultUsers}" var="user">
+            <f:facet name="header">検索結果</f:facet>
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{bb.user_id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">名前（漢字）</f:facet>
+                <h:outputText value="#{bb.name_kanji}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">名前（カナ）</f:facet>
+                <h:outputText value="#{bb.name_kana}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">電話番号</f:facet>
+                <h:outputText value="#{bb.tel}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">メールアドレス</f:facet>
+                <h:outputText value="#{bb.email}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">生年月日</f:facet>
+                <h:outputText value="#{bb.age}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">性別</f:facet>
+                <h:outputText value="#{bb.sex}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">登録日</f:facet>
+                <h:outputText value="#{bb.register}"/>
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>
 
