@@ -250,9 +250,4 @@ public class SuperBb implements Serializable {
         return "output.xhtml";
     }
 
-    public String usersVarClear() {
-        name_kanji = name_kana = tel = email = age = sex = register = null;
-        return null;
-    }
-
 }

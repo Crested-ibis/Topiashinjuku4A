@@ -22,5 +22,16 @@ public class Bb extends DBAccess {
 
     public void dispSeats() {
     }
+    
+    public String usersVarClear() {
+        name_kanji = name_kana = tel = email = age = sex = register = null;
+        return null;
+    }
+    
+    public String theatersVarClear() {
+        theater_info_id = room_num = seat_id = null;
+        movietitle = showdate = showtime = null;
+        return null;
+    }
 
 }

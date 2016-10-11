@@ -185,10 +185,4 @@ public class DBAccess extends SuperBb {
     public void getHasSeat() {
     }
 
-    public String theatersVarClear() {
-        theater_info_id = room_num = seat_id = null;
-        movietitle = showdate = showtime = null;
-        return null;
-    }
-
 }
