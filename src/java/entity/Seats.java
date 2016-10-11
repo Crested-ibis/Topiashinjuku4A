@@ -23,7 +23,7 @@ public class Seats implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Boolean[] hasSeat;
+    private Boolean hasSeat;
 
     public Seats() {}
     

@@ -41,6 +41,9 @@ public class DBAccess extends SuperBb {
 
     @EJB
     UsersManager um;
+    
+    @EJB
+    TheatersManager tm;
 
     public DBAccess() {
         super();
@@ -106,6 +109,10 @@ public class DBAccess extends SuperBb {
         Integer nowId = theater.getId();
         theater = new Theaters(nowId, room_num, movietitle, showdate, showtime, hasSeats);
         theatersDb.update(theater);
+    }
+    
+    public List<Theaters> getAllTheaters(){
+        return tm.getAllTheaters();
     }
 
     public Integer getUser_id() {
