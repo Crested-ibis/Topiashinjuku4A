@@ -88,7 +88,55 @@ public class DBAccess extends SuperBb {
     TheatersDb theatersDb;
     @EJB
     SeatsDb seatsDb;
+
+    public DBAccess() {
+        super();
+    }
     
+    public Map<String, String> getItems_users_field() {
+        return items_users_field;
+    }
+
+    protected static Map<String, String> items_users_operator;
+
+    static {
+        items_users_operator = new LinkedHashMap<>();
+        items_users_operator.put("を含む", "users_include");
+        items_users_operator.put("以上", "users_and_over");
+        items_users_operator.put("以下", "users_and_less");
+    }
+
+    public Map<String, String> getItems_users_operator() {
+        return items_users_operator;
+    }
+
+    protected static Map<String, String> items_theators_field;
+
+    static {
+        items_theators_field = new LinkedHashMap<>();
+        items_theators_field.put("ID", "theater_info_id");
+        items_theators_field.put("シアターNo", "room_num");
+        items_theators_field.put("映画タイトル", "movietitle");
+        items_theators_field.put("上映日時", "showtime");
+    }
+
+    public Map<String, String> getItems_theators_field() {
+        return items_theators_field;
+    }
+
+    protected static Map<String, String> items_theators_operator;
+
+    static {
+        items_theators_operator = new LinkedHashMap<>();
+        items_theators_operator.put("を含む", "theaters_inclede");
+        items_theators_operator.put("以上", "theaters_and_over");
+        items_theators_operator.put("以下", "theaters_and_less");
+    }
+
+    public Map<String, String> getItems_theators_operator() {
+        return items_theators_operator;
+    }
+
     public Integer getUser_id() {
         return user_id;
     }
@@ -198,6 +246,12 @@ public class DBAccess extends SuperBb {
     }
 
     public void getHasSeat() {
+    }
+
+    public String theatersVarClear() {
+        theater_info_id = room_num = seat_id = null;
+        movietitle = showdate = showtime = null;
+        return null;
     }
 
 }
