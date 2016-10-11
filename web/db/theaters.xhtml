@@ -1,16 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates 
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>シアター情報を扱う</div>
-    </body>
+
+<!--<?xml version='1.0' encoding='UTF-8' ?>-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>シアター情報</title>
+    </h:head>
+    <h1>シアター情報</h1>
+    <h:body>
+<!--検索-->
+上映情報 　　　<h:outputText value="検索"/> <h:selectOneMenu value="#{bb.field_theaters}" >
+     <f:selectItem itemLabel="選択してください" itemValue=""/>
+     <f:selectItems value="#{bb.items_theaters_field}" /> 
+ </h:selectOneMenu>
+        <h:inputText value="" p:placeholder="検索"/>
+        <h:selectOneMenu value="#{bb.operator_theaters}" >
+     <f:selectItem itemLabel="選択してください" itemValue=""/>
+     <f:selectItems value="#{bb.items_theaters_operator}" /> 
+ </h:selectOneMenu>
+        <h:commandButton value="検索" action="#{myBb.find()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
+        
+<!--結果-->
+<h:dataTable value="ここに検索結果のbbを入れる" var="user">
+    <f:facet name="header">検索結果</f:facet>
+    <h:column>
+        <f:facet name="header">上映ID</f:facet>
+        <h:outputText value="#{bb.theater_info_id}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">シアターNo</f:facet>
+        <h:outputText value="#{bb.room_num}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">映画タイトル</f:facet>
+        <h:outputText value="#{bb.movietitle}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">上映日時</f:facet>
+        <h:outputText value="#{bb.showdate}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">上映時間</f:facet>
+        <h:outputText value="#{bb.showtime}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">座席</f:facet>
+        <h:outputText value="#{bb.seat_id}"/>
+    </h:column>
+</h:dataTable>
+    </h:body>
 </html>
