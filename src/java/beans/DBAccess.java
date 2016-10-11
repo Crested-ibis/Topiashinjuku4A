@@ -59,6 +59,10 @@ public class DBAccess extends SuperBb {
         usersDb.update(renewUser);
 
     }
+    
+    public List<Users> getAllUsers(){
+        return um.getAllUsers();
+    }
 
     public void searchUsers() {
         result_user = (Users) usersDb.find(theater_info_id);
