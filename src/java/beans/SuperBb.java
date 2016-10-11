@@ -24,6 +24,7 @@ public class SuperBb implements Serializable {
     protected String movietitle;
     protected String showdate;
     protected String showtime;
+    protected Boolean[] hasSeats;
     protected Boolean is_editable_users = false;
     protected Boolean is_editable_theaters = false;
 
@@ -220,4 +221,14 @@ public class SuperBb implements Serializable {
     public void setShowtime(String showtime) {
         this.showtime = showtime;
     }
+
+    public Boolean[] getHasSeats() {
+        return hasSeats;
+    }
+
+    public void setHasSeats(Boolean[] hasSeats) {
+        this.hasSeats = hasSeats;
+    }
+    
+    
 }

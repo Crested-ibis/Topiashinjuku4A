@@ -6,7 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.ejb.EJB;
 import db.UsersDb;
+import entity.Theaters;
 import entity.Users;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,63 +27,9 @@ public class DBAccess extends SuperBb {
     protected String search_theaters;
     protected String operator_theaters;
 
-    protected static Map<String, String> items_users_field;
+    private Users kari_user;
 
-    static {
-        items_users_field = new LinkedHashMap<>();
-        items_users_field.put("ID", "user_id");
-        items_users_field.put("氏名（漢字）", "name_kanji");
-        items_users_field.put("氏名（カナ）", "name_kana");
-        items_users_field.put("電話番号", "tel");
-        items_users_field.put("メールアドレス", "email");
-        items_users_field.put("生年月日", "age");
-        items_users_field.put("性別", "sex");
-        items_users_field.put("登録日", "register");
-    }
-
-    public Map<String, String> getItems_users_field() {
-        return items_users_field;
-    }
-
-    protected static Map<String, String> items_users_operator;
-
-    static {
-        items_users_operator = new LinkedHashMap<>();
-        items_users_operator.put("を含む", "users_include");
-        items_users_operator.put("以上", "users_and_over");
-        items_users_operator.put("以下", "users_and_less");
-    }
-
-    public Map<String, String> getItems_users_operator() {
-        return items_users_operator;
-    }
-
-    protected static Map<String, String> items_theators_field;
-
-    static {
-        items_theators_field = new LinkedHashMap<>();
-        items_theators_field.put("ID", "theater_info_id");
-        items_theators_field.put("シアターNo", "room_num");
-        items_theators_field.put("映画タイトル", "movietitle");
-        items_theators_field.put("上映日時", "showtime");
-    }
-
-    public Map<String, String> getItems_theators_field() {
-        return items_theators_field;
-    }
-
-    protected static Map<String, String> items_theators_operator;
-
-    static {
-        items_theators_operator = new LinkedHashMap<>();
-        items_theators_operator.put("を含む", "theaters_inclede");
-        items_theators_operator.put("以上", "theaters_and_over");
-        items_theators_operator.put("以下", "theaters_and_less");
-    }
-
-    public Map<String, String> getItems_theators_operator() {
-        return items_theators_operator;
-    }
+    protected Users result_user;
 
     @EJB
     UsersDb usersDb;
@@ -92,49 +41,58 @@ public class DBAccess extends SuperBb {
     public DBAccess() {
         super();
     }
-    
-    public Map<String, String> getItems_users_field() {
-        return items_users_field;
+
+    private void init() {
     }
 
-    protected static Map<String, String> items_users_operator;
-
-    static {
-        items_users_operator = new LinkedHashMap<>();
-        items_users_operator.put("を含む", "users_include");
-        items_users_operator.put("以上", "users_and_over");
-        items_users_operator.put("以下", "users_and_less");
+    public void addUser() {
+        kari_user = new Users(name_kanji, name_kana, tel, email, age, sex, password, register);
+        usersDb.add(kari_user);
     }
 
-    public Map<String, String> getItems_users_operator() {
-        return items_users_operator;
+    public void updateUser() {
+        Users renewUser = new Users(user_id, name_kanji, name_kana, tel, email, age, sex, password, register);
+        usersDb.update(renewUser);
+
     }
 
-    protected static Map<String, String> items_theators_field;
-
-    static {
-        items_theators_field = new LinkedHashMap<>();
-        items_theators_field.put("ID", "theater_info_id");
-        items_theators_field.put("シアターNo", "room_num");
-        items_theators_field.put("映画タイトル", "movietitle");
-        items_theators_field.put("上映日時", "showtime");
+    public void searchUsers() {
+        result_user = (Users) usersDb.find(theater_info_id);
     }
 
-    public Map<String, String> getItems_theators_field() {
-        return items_theators_field;
+    public void deleteUser() {
     }
 
-    protected static Map<String, String> items_theators_operator;
-
-    static {
-        items_theators_operator = new LinkedHashMap<>();
-        items_theators_operator.put("を含む", "theaters_inclede");
-        items_theators_operator.put("以上", "theaters_and_over");
-        items_theators_operator.put("以下", "theaters_and_less");
+    public List<Users> getResultUsers() {
+        ;
     }
 
-    public Map<String, String> getItems_theators_operator() {
-        return items_theators_operator;
+    public void addTheater() {
+//        現在入力中のユーザ以外のシアター情報を更新したいなら、コッチを使う
+//        Users kari_user = (Users) usersDb.find(1);
+
+        hasSeats[10] = true;
+        hasSeats[20] = true;
+
+        // kari_userはaddUserで保存したUsersオブジェクトそのもの。いちいちDBにアクセスるのも良くないかと思い、そのまま使った。
+        Theaters th1 = new Theaters(room_num, movietitle, showdate, showtime, hasSeats, kari_user);
+        List<Theaters> li = kari_user.getTheaterses();
+        li.add(th1);
+        // 「追加」メソッドではあるが、実際には更新処理を行う
+        usersDb.update(kari_user);
+        // 追加した後にList< Theaters>を空にしないと前の入力が一緒に書き込まれる。なぜ？
+        li.clear();
+
+    }
+
+    public void updateTheater() {
+        Theaters theater = (Theaters) theatersDb.find(theater_info_id);
+
+        hasSeats[30] = true;
+
+        Integer nowId = theater.getId();
+        theater = new Theaters(nowId, room_num, movietitle, showdate, showtime, hasSeats);
+        theatersDb.update(theater);
     }
 
     public Integer getUser_id() {
@@ -209,33 +167,6 @@ public class DBAccess extends SuperBb {
         this.operator_theaters = operator_theaters;
     }
 
-    private void init() {
-    }
-
-    public void addUser() {
-        Users user = new Users(name_kanji, name_kana, tel, email, age, sex, password, register);
-        usersDb.add(user);
-    }
-
-    public void updateUser() {
-        
-    }
-
-    public void searchUsers() {
-    }
-
-    public void deleteUser() {
-    }
-
-    public void getResultUsers() {
-    }
-
-    public void addTheater() {
-    }
-
-    public void updateTheater() {
-    }
-
     public void searchTheaters() {
     }
 
@@ -248,10 +179,12 @@ public class DBAccess extends SuperBb {
     public void getHasSeat() {
     }
 
-    public String theatersVarClear() {
-        theater_info_id = room_num = seat_id = null;
-        movietitle = showdate = showtime = null;
-        return null;
+    public Users getResult_user() {
+        return result_user;
+    }
+
+    public void setResult_user(Users result_user) {
+        this.result_user = result_user;
     }
 
 }

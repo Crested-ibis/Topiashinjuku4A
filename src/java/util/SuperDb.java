@@ -37,4 +37,5 @@ public abstract class SuperDb<T> {
 		cq.select(cq.from(entityClass));
 		return em.createQuery(cq).getResultList();
 	}	
+        
 }

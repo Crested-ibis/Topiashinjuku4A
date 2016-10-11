@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -36,12 +37,27 @@ public class Users implements Serializable {
     private String register;
     
     // UsersエンティティはTheatersエンティティに対するすべての権限を持つ
-    @ManyToMany(mappedBy = "users",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "users",cascade = {CascadeType.ALL})
     private List<Theaters> theaterses;
 
     public Users() {
     }
 
+    // 編集用ID付き。Usersはない
+    public Users(Integer id, String name_kanji, String name_kana, String tel, String email, String age, String sex, String password, String register) {
+        this.id = id;
+        this.name_kanji = name_kanji;
+        this.name_kana = name_kana;
+        this.tel = tel;
+        this.email = email;
+        this.age = age;
+        this.sex = sex;
+        this.password = password;
+        this.register = register;
+    }
+
+    
+    
     public Users(String name_kanji, String name_kana, String tel, String email, String age, String sex, String password, String register) {
         this.name_kanji = name_kanji;
         this.name_kana = name_kana;

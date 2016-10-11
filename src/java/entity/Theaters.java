@@ -28,27 +28,31 @@ public class Theaters implements Serializable {
     private String showdate;
     private String showtime;
     private Boolean[] hasSeats;
-    
+
     private Users users;
 
     public Theaters() {
     }
 
-    public Theaters(Integer room_num, String movietitle, String showdate, String showtime) {
+        // 編集用のID付きコンストラクタ。Usersは編集しない
+    public Theaters(Integer id, Integer room_num, String movietitle, String showdate, String showtime, Boolean[] hasSeats) {
+        this.id = id;
         this.room_num = room_num;
         this.movietitle = movietitle;
         this.showdate = showdate;
         this.showtime = showtime;
+        this.hasSeats = hasSeats;
     }
+
 
     public Theaters(Integer room_num, String movietitle, String showdate, String showtime, Boolean[] hasSeats, Users users) {
         // コンストラクタ起動時に中身を作り、全てfalseにする。
         // booleanではなくbooleanなので、初期値がfalseではなくnullになるはずなので
         hasSeats = new Boolean[100];
-        for(Boolean seat:hasSeats){
-            seat=false;
+        for (Boolean seat : hasSeats) {
+            seat = false;
         }
-        
+
         this.room_num = room_num;
         this.movietitle = movietitle;
         this.showdate = showdate;
@@ -56,8 +60,6 @@ public class Theaters implements Serializable {
         this.hasSeats = hasSeats;
         this.users = users;
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -114,6 +116,5 @@ public class Theaters implements Serializable {
     public void setUsers(Users users) {
         this.users = users;
     }
-
 
 }

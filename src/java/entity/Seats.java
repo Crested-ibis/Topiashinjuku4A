@@ -25,12 +25,7 @@ public class Seats implements Serializable {
     private Integer id;
     private Boolean[] hasSeat;
 
-    public Seats() {
-//        コンストラクタ起動時に配列の中身を制作し、全てfalseにする
-        hasSeat = new Boolean[100];
-        for (boolean seat : hasSeat) {
-            seat = false;
-        }
-    }
+    public Seats() {}
+    
 
 }

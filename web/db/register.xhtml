@@ -27,10 +27,31 @@
                 登録日
                 <h:inputText value="#{bb.register}" /><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
             </h:panelGrid>
-            <h:panelGrid columns="3">
+            <h:panelGrid columns="2">
                 <h:commandButton action="#{bb.addUser()}" value="登録" />
                 <h:commandButton value="クリア"/>
             </h:panelGrid>
+        </h:form>
+        <h:form>
+            <h:panelGrid columns="2">
+                シアターNo
+                <h:inputText value="#{bb.room_num}" />
+                映画タイトル
+                <h:inputText value="#{bb.movietitle}" />
+                上映月日
+                <h:inputText value="#{bb.showdate}" />
+                上映時間
+                <h:inputText value="#{bb.showtime}" />
+                席
+
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:commandButton action="#{bb.addTheater()}" value="登録" />
+                <h:commandButton value="クリア"/>
+            </h:panelGrid>
+        </h:form>
+        <h:form>
+            <h:commandButton action="#{bb.updateTheater(key_id)}" value="更新"/>
         </h:form>
     </h:body>
 </html>
