@@ -7,14 +7,13 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="4">
+            <h:panelGrid columns="5">
                 <h:commandLink action="#{bb.goIndex()}">トップ</h:commandLink>    
                 <h:commandLink action="#{bb.goUsers()}">ユーザ情報</h:commandLink>
                 <h:commandLink action="#{bb.goTheaters()}">上映情報</h:commandLink>
                 <h:commandLink action="#{bb.goEdit()}">詳細</h:commandLink>
                 <!--テスト用に登録ページに直接遷移できるようにしてある-->
-                <h:commandLink action="#{suzukiBb.goRegister()}">登録（テスト用）</h:commandLink>
-                
+                <h:commandLink action="#{suzukiBb.goRegister()}">登録（テスト用）</h:commandLink>                
             </h:panelGrid>
         </h:form>
         <div>

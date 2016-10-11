@@ -38,7 +38,7 @@ public class DBAccess extends SuperBb {
     TheatersDb theatersDb;
     @EJB
     SeatsDb seatsDb;
-    
+
     @EJB
     UsersManager um;
 
@@ -59,8 +59,8 @@ public class DBAccess extends SuperBb {
         usersDb.update(renewUser);
 
     }
-    
-    public List<Users> getAllUsers(){
+
+    public List<Users> getAllUsers() {
         return um.getAllUsers();
     }
 
@@ -71,8 +71,13 @@ public class DBAccess extends SuperBb {
     public void deleteUser() {
     }
 
-    public List<Users> getResultUsers() {        
-        return um.getFromDb(field_users, search_users, operator_users);
+    public List<Users> getResultUsers() {
+        if (search_users != null) {
+            return um.getFromDb(field_users, search_users, operator_users);
+        } else {
+            return null;
+        }
+
     }
 
     public void addTheater() {
