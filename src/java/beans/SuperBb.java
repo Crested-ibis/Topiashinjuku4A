@@ -29,8 +29,8 @@ public class SuperBb implements Serializable {
 
     protected static Map<String, String> items_users_field;
     protected static Map<String, String> items_users_operator;
-    protected static Map<String, String> items_theators_field;
-    protected static Map<String, String> items_theators_operator;
+    protected static Map<String, String> items_theaters_field;
+    protected static Map<String, String> items_theaters_operator;
 
     static {
         items_users_field = new LinkedHashMap<>();
@@ -60,26 +60,26 @@ public class SuperBb implements Serializable {
     }
 
     static {
-        items_theators_field = new LinkedHashMap<>();
-        items_theators_field.put("ID", "theater_info_id");
-        items_theators_field.put("シアターNo", "room_num");
-        items_theators_field.put("映画タイトル", "movietitle");
-        items_theators_field.put("上映日時", "showtime");
+        items_theaters_field = new LinkedHashMap<>();
+        items_theaters_field.put("ID", "theater_info_id");
+        items_theaters_field.put("シアターNo", "room_num");
+        items_theaters_field.put("映画タイトル", "movietitle");
+        items_theaters_field.put("上映日時", "showtime");
     }
 
-    public Map<String, String> getItems_theators_field() {
-        return items_theators_field;
+    public Map<String, String> getItems_theaters_field() {
+        return items_theaters_field;
     }
 
     static {
-        items_theators_operator = new LinkedHashMap<>();
-        items_theators_operator.put("を含む", "theaters_inclede");
-        items_theators_operator.put("以上", "theaters_and_over");
-        items_theators_operator.put("以下", "theaters_and_less");
+        items_theaters_operator = new LinkedHashMap<>();
+        items_theaters_operator.put("を含む", "theaters_inclede");
+        items_theaters_operator.put("以上", "theaters_and_over");
+        items_theaters_operator.put("以下", "theaters_and_less");
     }
 
-    public Map<String, String> getItems_theators_operator() {
-        return items_theators_operator;
+    public Map<String, String> getItems_theaters_operator() {
+        return items_theaters_operator;
     }
 
     public Boolean getIs_editable_users() {
