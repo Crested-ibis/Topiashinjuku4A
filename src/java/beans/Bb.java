@@ -5,6 +5,7 @@ import entity.Users;
 import entity.Seats;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -122,20 +123,6 @@ public class Bb extends DBAccess {
     public String theatersVarClear() {
         theater_info_id = room_num = seat_id = null;
         movietitle = showdate = showtime = null;
-        return null;
-    }
-
-    public String doSearchUsers() {
-        if (field_users != null && search_users != null && operator_users != null) {
-            um.getFromDb(field_users, search_users, operator_users);
-        }
-        return null;
-    }
-
-    public String doSearchTheaters() {
-        if (field_theaters != null && search_theaters != null && operator_theaters != null) {
-            tm.getFromDb(field_theaters, search_theaters, operator_theaters);
-        }
         return null;
     }
 
