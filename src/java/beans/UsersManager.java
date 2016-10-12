@@ -17,7 +17,6 @@ import javax.persistence.TypedQuery;
  *
  * @author melli
  */
-
 @Stateless
 public class UsersManager {
 
@@ -25,17 +24,31 @@ public class UsersManager {
     EntityManager em;
 
     public List<Users> getFromDb(String field_users, String search_users, String operator_users) {
-        TypedQuery<Users> query = null;
+        TypedQuery<Users> q = null;
 
-//            Query query = em.createQuery("select c from Users c where c.email like '%mail%'");
-        String sql = "select c from Users c where c.email like '%gmail%'";
-        query = em.createNamedQuery(sql, Users.class);
-//        query.setParameter(1, search_users);
-        
-        return query.getResultList();
+        // setParameterが何故かうまく動かなかったので、SQL文を直接書くことにする
+        String sql = "select c from Users c where c." + field_users + " ";
+
+        if (operator_users.equals("include")) {
+            if (field_users.equals("id")) {
+                sql += "= " + search_users;
+            } else {
+                sql += "like '%" + search_users + "%'";
+            }
+        } else if (operator_users.equals("andover")) {
+            sql += ">= " + search_users;
+        } else if (operator_users.equals("andless")) {
+            sql += "<= " + search_users;
+        }
+
+        System.out.println("sql文=" + sql);
+
+        q = em.createQuery(sql, Users.class);
+        return q.getResultList();
+
     }
-    
-    public List<Users> getAllUsers(){
+
+    public List<Users> getAllUsers() {
         Query q = em.createQuery("select c from Users c");
         List<Users> ls = q.getResultList();
         return ls;

@@ -24,12 +24,12 @@ public class Bb extends DBAccess {
     private void init() {
         // ココで初期化するのは本来適切ではないだろうから、後で適当な場所に書き直せ 
         seat_nums = new ArrayList<Integer>();
-        
+
         // 入れ子構造で登録する
         Users u = new Users("斎藤 隆", "サイトウ タカシ", "042-565-2967", "takashi_revolution@ezweb.ne.jp", "1976-01-01", "男 ", "abcd9999", "2016-10-10");
         usersDb.add(u);
         Integer uId = u.getId();
-        u=null;
+        u = null;
 
         u = (Users) usersDb.find(uId);
         Theaters th = new Theaters(4, "渚にて", "1958-07-31", "12:00", u);
@@ -48,22 +48,22 @@ public class Bb extends DBAccess {
 
         usersDb.update(u);
         li.clear();
-        
-        Users us = new Users("京極夏彦","キョウゴク ナツヒコ","034-6616-8769", "ubume@gmail.com","1970-12-03","男","dbsi8758","2016-10-11");
+
+        Users us = new Users("京極夏彦", "キョウゴク ナツヒコ", "034-6616-8769", "ubume@gmail.com", "1970-12-03", "男", "dbsi8758", "2016-10-11");
         usersDb.add(us);
         Integer usId = us.getId();
-        us=null;
-        
-        Users editU = (Users)usersDb.find(usId);
+        us = null;
+
+        Users editU = (Users) usersDb.find(usId);
         Theaters ths = new Theaters(3, "姑獲鳥の夏", "2010-08-05", "18:00", editU);
-        
+
         List<Seats> ls2 = ths.getSeatses();
-        int[] nums2 = {15,16,17};
-        
-        for(int num:nums2){
+        int[] nums2 = {15, 16, 17};
+
+        for (int num : nums2) {
             ls2.add(new Seats(num));
         }
-        
+
         List<Theaters> lt = editU.getTheaterses();
         lt.add(ths);
         usersDb.update(editU);
@@ -78,28 +78,27 @@ public class Bb extends DBAccess {
 //        lss.add(ses);
 //        theatersDb.update(editTh);
 //        lss.clear();
-
-    // テスト用にSuperBbの変数に値を予め入れておく
-        name_kanji="三島 由紀夫";
-        name_kana="ミシマ ユキオ";
-        tel="068-365-8754";
+        // テスト用にSuperBbの変数に値を予め入れておく
+        name_kanji = "三島 由紀夫";
+        name_kana = "ミシマ ユキオ";
+        tel = "068-365-8754";
         email = "seppuku@gmail.com";
-        age="1940-03-5";
-        password="biyt97645";
-        register="2016-10-12";
-        
+        age = "1940-03-5";
+        password = "biyt97645";
+        register = "2016-10-12";
+
         room_num = 1;
-        movietitle ="金閣寺";
+        movietitle = "金閣寺";
         showdate = "1976-01-26";
         showtime = "09:16";
 
     }
-    
-    public void addSeat_num(){
+
+    public void addSeat_num() {
         seat_nums.add(seat_num);
-        
+
         System.out.println(String.valueOf(seat_num) + "をseat_numsに追加");
-        
+
         seat_num = null;
     }
 
@@ -125,7 +124,20 @@ public class Bb extends DBAccess {
     }
 
     public String doSearchUsers() {
-        um.getFromDb(field_users, search_users, operator_users);
+        if (field_users != null && search_users != null && operator_users != null) {
+            um.getFromDb(field_users, search_users, operator_users);
+        }
+        return null;
+    }
+
+    public String doSearchTheaters() {
+        if (field_theaters != null && search_theaters != null && operator_theaters != null) {
+            tm.getFromDb(field_theaters, search_theaters, operator_theaters);
+        }
+        return null;
+    }
+
+    public String reload() {
         return null;
     }
 

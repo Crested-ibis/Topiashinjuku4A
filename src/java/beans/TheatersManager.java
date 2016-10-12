@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import entity.Theaters;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -18,12 +19,36 @@ import javax.persistence.Query;
  */
 @Stateless
 public class TheatersManager {
+
     @PersistenceContext
     EntityManager em;
-    
-    public List<Theaters> getAllTheaters(){
+
+    public List<Theaters> getFromDb(String field, String search, String operator) {
+        TypedQuery<Theaters> q = null;
+
+        String sql = "select c from Theaters c where c." + field + " ";
+
+        if (operator.equals("include")) {
+            if (field.equals("id")) {
+                sql += "= " + search;
+            } else {
+                sql += "like '%" + search + "%'";
+            }
+        } else if (operator.equals("andover")) {
+            sql += ">= " + search;
+        } else {
+            sql += "<=" + search;
+        }
+
+        System.out.println("sql文=" + sql);
+
+        q = em.createQuery(sql, Theaters.class);
+        return q.getResultList();
+    }
+
+    public List<Theaters> getAllTheaters() {
         Query q = em.createQuery("select c from Theaters c");
         return q.getResultList();
     }
-    
+
 }

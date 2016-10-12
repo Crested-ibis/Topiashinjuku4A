@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,9 +22,15 @@ import javax.persistence.Table;
  *
  * @author melli
  */
+@NamedQueries({
+    @NamedQuery(name = Users.Search,query = "select c from Users c where c.email like '% :search %'")
+})
+
 @Entity
 @Table(name = "user_info")
 public class Users implements Serializable {
+    
+    public static final String Search = "Search";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
