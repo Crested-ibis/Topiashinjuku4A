@@ -5,13 +5,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-
         <title>ユーザ情報</title>
     </h:head>
     <h:body>
-        <!--検索ー-->
         <h:form>
-            ユーザ情報 <h:outputText value="検索"/>
+            ユーザ情報
+            <h:outputText value="検索"/>
             <h:selectOneMenu value="#{bb.field_users}" >
                 <f:selectItem itemLabel="選択してください" itemValue=""/>
                 <f:selectItems value="#{bb.items_users_field}" /> 
@@ -21,10 +20,12 @@
                 <f:selectItem itemLabel="選択してください" itemValue=""/>
                 <f:selectItems value="#{bb.items_users_operator}" /> 
             </h:selectOneMenu>
-            <h:commandButton value="検索" action="#{bb.reload()}"/><h:commandButton value="新規登録" action="#{myBb.next()}"/>
+            <h:commandButton value="検索" action="#{bb.reload()}">
+                <!--<f:ajax render=":dt_u"/>-->
+            </h:commandButton>
+            <h:commandButton value="新規登録" action="#{myBb.next()}"/>
         </h:form>
-        <!--結果-->
-        <h:dataTable value="#{bb.resultUsers}" var="u">
+        <h:dataTable id="dt_u" value="#{bb.resultUsers}" var="u">
             <f:facet name="header">検索結果</f:facet>
             <h:column>
                 <f:facet name="header">ID</f:facet>
@@ -57,6 +58,14 @@
             <h:column>
                 <f:facet name="header">登録日</f:facet>
                 <h:outputText value="#{u.register}"/>
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandLink action="#{bb.goEdit()}">
+                        <f:param name="ed_user" value="#{u.id}"/>
+                        詳細
+                    </h:commandLink>
+                </h:form>
             </h:column>
         </h:dataTable>
     </h:body>

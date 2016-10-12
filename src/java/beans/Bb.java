@@ -59,7 +59,6 @@ public class Bb extends DBAccess {
 
         Users editU = (Users) usersDb.find(usId);
         Theaters ths = new Theaters(3, "姑獲鳥の夏", "2010-08-05", "18:00", editU);
-
         List<Seats> ls2 = ths.getSeatses();
         int[] nums2 = {15, 16, 17};
 
@@ -69,6 +68,15 @@ public class Bb extends DBAccess {
 
         List<Theaters> lt = editU.getTheaterses();
         lt.add(ths);
+
+        Theaters th3 = new Theaters(4, "魍魎の匣", "2005-03-14", "9:00", editU);
+        List<Seats> ls3 = th3.getSeatses();
+        int[] nums3 = {30, 31};
+        for (int num : nums3) {
+            ls3.add(new Seats(num));
+        }
+        lt.add(th3);
+
         usersDb.update(editU);
         lt.clear();
 
@@ -98,11 +106,14 @@ public class Bb extends DBAccess {
     }
 
     public void addSeat_num() {
-        seat_nums.add(seat_num);
-
-        System.out.println(String.valueOf(seat_num) + "をseat_numsに追加");
-
-        seat_num = null;
+        if (seat_nums == null) {
+            seat_nums = new ArrayList<>();
+        }
+        if (seat_num != null) {
+            seat_nums.add(seat_num);
+            System.out.println(String.valueOf(seat_num) + "をseat_numsに追加");
+            seat_num = null;
+        }
     }
 
     private void initRegisterPage() {
@@ -130,11 +141,16 @@ public class Bb extends DBAccess {
         return null;
     }
 
-        public String goUsers() {
-        String contextPath;
-        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        contextPath = servletContext.getContextPath().toString();
-        return contextPath;
+    public String goUsers() {
+        // JSFのパスはブラウザで見るとわかるけど、特殊な感じ。よって、以下のパスでは動かないようだ
+//        String path;
+//        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+//        path = servletContext.getContextPath();
+//        path += "/db/users.xhtml";
+//        
+//        return path;
+
+        return "db/users.xhtml";
     }
 
     public String goRegister() {
@@ -146,7 +162,7 @@ public class Bb extends DBAccess {
     }
 
     public String goEdit() {
-        return "db/edit.xhtml";
+        return "edit.xhtml";
     }
 
     public String goIndex() {
