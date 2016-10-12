@@ -12,18 +12,20 @@
     <h:body>
         <!--検索-->
         <h:form>
-            上映情報 　　　<h:outputText value="検索"/> <h:selectOneMenu value="#{bb.field_theaters}" >
+            上映情報 　　　
+            <h:outputText value="検索"/> 
+            <h:selectOneMenu value="#{bb.field_theaters}" >
                 <f:selectItem itemLabel="選択してください" itemValue=""/>
                 <f:selectItems value="#{bb.items_theaters_field}" /> 
             </h:selectOneMenu>
-            <h:inputText value="" p:placeholder="検索"/>
+            <h:inputText value="#{bb.search_theaters}" p:placeholder="検索"/>
             <h:selectOneMenu value="#{bb.operator_theaters}" >
                 <f:selectItem itemLabel="選択してください" itemValue=""/>
                 <f:selectItems value="#{bb.items_theaters_operator}" /> 
             </h:selectOneMenu>
-            <h:commandButton value="検索" action="#{myBb.find()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
+            <h:commandButton value="検索" action="#{bb.reload()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
         </h:form>
-        <h:dataTable value="#{bb.allTheaters}" var="th">
+        <h:dataTable value="#{bb.resultTheaters}" var="th">
             <f:facet name="header">検索結果</f:facet>
             <h:column>
                 <f:facet name="header">上映ID</f:facet>
@@ -49,9 +51,9 @@
             <h:column>
                 <f:facet name="header">座席</f:facet>
                 <h:dataTable value="#{th.seatses}" var="s">                    
-                        <h:column>
-                            <h:outputText value="#{s.reservedSeatId}"/>
-                        </h:column>
+                    <h:column>
+                        <h:outputText value="#{s.reservedSeatId}"/>
+                    </h:column>
                 </h:dataTable>
             </h:column>
         </h:dataTable>

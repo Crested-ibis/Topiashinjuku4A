@@ -33,7 +33,7 @@
                         <f:validateRequired/></h:inputText><h:outputText value="例 xxxxx@gmail.com　○" />
                     生年月日　<h:outputText value="bb.age" rendered="#{!bb.is_editable_users}" />
                     <h:inputText value="#{bb.age}" rendered="#{bb.is_editable_users}">
-                        <f:convertDateTime type="date" timeZone="Asia/Tokyo"/></h:inputText><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
+                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/></h:inputText><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
                     性別　<h:selectOneRadio value="#{bb.sex}" rendered="#{bb.is_editable_users}">
                         <f:selectItems value="#{bb.items_sex}"/></h:selectOneRadio>
                     <h:outputText value="bb.sex" rendered="#{!bb.is_editable_users}"/><h:outputText value="どちらかを選択してください" />
@@ -42,7 +42,7 @@
                         <f:validateRequired/></h:inputText><h:outputText value="何文字～何文字以内" />
                     登録日<h:outputText value="bb.register" rendered="#{!bb.is_editable_users}" />
                     <h:inputText value="#{bb.register}" rendered="#{bb.is_editable_users}">
-                        <f:convertDateTime type="date" timeZone="Asia/Tokyo"/></h:inputText><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
+                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/></h:inputText><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
                 </h:panelGrid>
             </ui:repeat>
             <h:panelGrid columns="4">

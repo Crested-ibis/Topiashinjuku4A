@@ -21,7 +21,7 @@
                 <f:selectItem itemLabel="選択してください" itemValue=""/>
                 <f:selectItems value="#{bb.items_users_operator}" /> 
             </h:selectOneMenu>
-            <h:commandButton value="検索" action="#{bb.doSearchUsers()}"/><h:commandButton value="新規登録" action="#{myBb.next()}"/>
+            <h:commandButton value="検索" action="#{bb.reload()}"/><h:commandButton value="新規登録" action="#{myBb.next()}"/>
         </h:form>
         <!--結果-->
         <h:dataTable value="#{bb.resultUsers}" var="u">

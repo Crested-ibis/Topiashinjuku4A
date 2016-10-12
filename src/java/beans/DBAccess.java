@@ -28,14 +28,14 @@ public class DBAccess extends SuperBb {
     protected String field_theaters;
     protected String search_theaters;
     protected String operator_theaters;
-    
+
     // この配列の位置の席を予約済みとする
     // addTheatersを動かす際には予め埋めておくこと
     protected List<Integer> seat_nums;
 
     // seat_numsを作るために用意
     protected Integer seat_num;
-    
+
     private Users kari_user;
 
     protected Users result_user;
@@ -49,7 +49,7 @@ public class DBAccess extends SuperBb {
 
     @EJB
     UsersManager um;
-    
+
     @EJB
     TheatersManager tm;
 
@@ -88,30 +88,35 @@ public class DBAccess extends SuperBb {
         } else {
             return null;
         }
-
     }
-    
+
+    public List<Theaters> getResultTheaters() {
+        if (search_theaters != null) {
+            return tm.getFromDb(field_theaters, search_theaters, operator_theaters);
+        } else {
+            return null;
+        }
+    }
 
     public void addTheater() {
 //        現在入力中のユーザ以外のシアター情報を更新したいなら、コッチを使う
 //        Users kari_user = (Users) usersDb.find(1);
-        
-        // Users,Theaters,Seatsは入れ子構造で更新する
 
+        // Users,Theaters,Seatsは入れ子構造で更新する
         // kari_userはaddUserで保存したUsersオブジェクトそのもの。いちいちDBにアクセスるのも良くないかと思い、そのまま使った。
         Theaters th1 = new Theaters(room_num, movietitle, showdate, showtime, kari_user);
 
-            List<Seats> ls = th1.getSeatses();
-            // Theaters追加時にSeatsを初期化する
+        List<Seats> ls = th1.getSeatses();
+        // Theaters追加時にSeatsを初期化する
 
-            // seat_numsに基づき空席情報を埋める;
-            String str = "";
-            for(Integer num : seat_nums){
-                ls.add(new Seats(num));
-                str += String.valueOf(num) + ", ";
-            }
-            
-            System.out.println(str + "を席テーブルに追加");
+        // seat_numsに基づき空席情報を埋める;
+        String str = "";
+        for (Integer num : seat_nums) {
+            ls.add(new Seats(num));
+            str += String.valueOf(num) + ", ";
+        }
+
+        System.out.println(str + "を席テーブルに追加");
 
         List<Theaters> li = kari_user.getTheaterses();
         li.add(th1);
@@ -120,7 +125,6 @@ public class DBAccess extends SuperBb {
         // 追加した後にList< Theaters>を空にしないと前の入力が一緒に書き込まれる。なぜ？
         li.clear();
     }
-    
 
     public void updateTheater() {
         Theaters theater = (Theaters) theatersDb.find(theater_info_id);
@@ -129,19 +133,15 @@ public class DBAccess extends SuperBb {
         theater = new Theaters(nowId, room_num, movietitle, showdate, showtime);
         theatersDb.update(theater);
     }
-    
-    public List<Theaters> getAllTheaters(){
+
+    public List<Theaters> getAllTheaters() {
         return tm.getAllTheaters();
     }
-
 
     public void searchTheaters() {
     }
 
     public void deleteTheater() {
-    }
-
-    public void getResultTheaters() {
     }
 
     public void getHasSeat() {
@@ -155,7 +155,7 @@ public class DBAccess extends SuperBb {
         this.result_user = result_user;
     }
 
-        public Integer getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
@@ -242,8 +242,5 @@ public class DBAccess extends SuperBb {
     public void setSeat_num(Integer seat_num) {
         this.seat_num = seat_num;
     }
-
-    
-    
 
 }

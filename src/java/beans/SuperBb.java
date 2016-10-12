@@ -35,7 +35,7 @@ public class SuperBb implements Serializable {
 
     static {
         items_users_field = new LinkedHashMap<>();
-        items_users_field.put("ID", "user_id");
+        items_users_field.put("ID", "id");
         items_users_field.put("氏名（漢字）", "name_kanji");
         items_users_field.put("氏名（カナ）", "name_kana");
         items_users_field.put("電話番号", "tel");
@@ -51,9 +51,9 @@ public class SuperBb implements Serializable {
 
     static {
         items_users_operator = new LinkedHashMap<>();
-        items_users_operator.put("を含む", "users_include");
-        items_users_operator.put("以上", "users_and_over");
-        items_users_operator.put("以下", "users_and_less");
+        items_users_operator.put("を含む", "include");
+        items_users_operator.put("以上", "andover");
+        items_users_operator.put("以下", "andless");
     }
 
     public Map<String, String> getItems_users_operator() {
@@ -62,10 +62,11 @@ public class SuperBb implements Serializable {
 
     static {
         items_theaters_field = new LinkedHashMap<>();
-        items_theaters_field.put("ID", "theater_info_id");
+        items_theaters_field.put("ID", "id");
         items_theaters_field.put("シアターNo", "room_num");
         items_theaters_field.put("映画タイトル", "movietitle");
-        items_theaters_field.put("上映日時", "showtime");
+        items_theaters_field.put("上映月日", "showdate");
+        items_theaters_field.put("上映時間", "showtime");
     }
 
     public Map<String, String> getItems_theaters_field() {
@@ -74,9 +75,9 @@ public class SuperBb implements Serializable {
 
     static {
         items_theaters_operator = new LinkedHashMap<>();
-        items_theaters_operator.put("を含む", "theaters_inclede");
-        items_theaters_operator.put("以上", "theaters_and_over");
-        items_theaters_operator.put("以下", "theaters_and_less");
+        items_theaters_operator.put("を含む", "include");
+        items_theaters_operator.put("以上", "andover");
+        items_theaters_operator.put("以下", "andless");
     }
 
     public Map<String, String> getItems_theaters_operator() {
