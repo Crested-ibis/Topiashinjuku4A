@@ -8,6 +8,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -141,8 +143,11 @@ public class Bb extends DBAccess {
         return null;
     }
 
-    public String goUsers() {
-        return "db/users.xhtml";
+        public String goUsers() {
+        String contextPath;
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        contextPath = servletContext.getContextPath().toString();
+        return contextPath;
     }
 
     public String goRegister() {
