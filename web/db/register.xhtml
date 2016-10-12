@@ -10,38 +10,61 @@
         <h:form>
             <h:panelGrid columns="3">
                 名前（漢字）
-                <h:inputText value="#{bb.name_kanji}" /><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
+                <h:inputText value="#{bb.name_kanji}" >
+                    <f:validateRequired/>
+                </h:inputText><h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
                 名前（カナ）
-                <h:inputText value="#{bb.name_kana}" /><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
+                <h:inputText value="#{bb.name_kana}" >
+                    <f:validateRequired/>
+                </h:inputText><h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
                 電話
-                <h:inputText value="#{bb.tel}" /><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
+                <h:inputText value="#{bb.tel}" >
+                    <f:validateRequired/>
+                </h:inputText><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
                 メール
-                <h:inputText value="#{bb.email}" /><h:outputText value="例 xxxxx@gmail.com　○" />
+                <h:inputText value="#{bb.email}" >
+                    <f:validateRequired/>
+                </h:inputText><h:outputText value="例 xxxxx@gmail.com　○" />
                 生年月日
-                <h:inputText value="#{bb.age}" /><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
+                <h:inputText value="#{bb.age}" >
+                    <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+                </h:inputText><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
                 性別　<h:selectOneRadio value="#{bb.sex}">
                     <f:selectItems value="#{bb.items_sex}"/>
+                    <f:validateRequired/>
                 </h:selectOneRadio><h:outputText value="どちらかを選択してください" />
                 パスワード
-                <h:inputText value="#{bb.password}" /><h:outputText value="何文字～何文字以内" />
+                <h:inputText value="#{bb.password}" >
+                    <f:validateLength minimum="4" maximum="20"/>
+                </h:inputText><h:outputText value="何文字～何文字以内" />
                 登録日
-                <h:inputText value="#{bb.register}" /><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
+                <h:inputText value="#{bb.register}" >
+                    <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+                </h:inputText><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:commandButton action="#{bb.addUser()}" value="登録" />
-                <h:commandButton value="クリア"/>
+                <h:commandButton action="#{bb.usersVarClear()}" value="クリア"/>
             </h:panelGrid>
         </h:form>
         <h:form>
             <h:panelGrid columns="2">
                 シアターNo
-                <h:inputText value="#{bb.room_num}" />
+                <h:inputText value="#{bb.room_num}" >
+                    <f:validateLongRange minimum="1" maximum="4"/> <f:validateRequired/>
+                </h:inputText>
                 映画タイトル
-                <h:inputText value="#{bb.movietitle}" />
+                <h:inputText value="#{bb.movietitle}" >
+                    <f:validateRequired/>
+                </h:inputText>
                 上映月日
-                <h:inputText value="#{bb.showdate}" />
+                <h:inputText value="#{bb.showdate}" >
+                    <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+                </h:inputText>
                 上映時間
-                <h:inputText value="#{bb.showtime}" />
+                <h:inputText value="#{bb.showtime}" >
+                    <f:convertDateTime type="time" pattern="HH:mm" timeZone="Asia/Tokyo"/>  
+                </h:inputText>
             </h:panelGrid>
             <h:panelGrid columns="3">
                 席
