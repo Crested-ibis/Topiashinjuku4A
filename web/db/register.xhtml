@@ -16,7 +16,7 @@
                 電話
                 <h:inputText value="#{bb.tel}" /><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
                 メール
-                 <h:inputText value="#{bb.email}" /><h:outputText value="例 xxxxx@gmail.com　○" />
+                <h:inputText value="#{bb.email}" /><h:outputText value="例 xxxxx@gmail.com　○" />
                 生年月日
                 <h:inputText value="#{bb.age}" /><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
                 性別　<h:selectOneRadio value="#{bb.sex}">
@@ -42,8 +42,13 @@
                 <h:inputText value="#{bb.showdate}" />
                 上映時間
                 <h:inputText value="#{bb.showtime}" />
+            </h:panelGrid>
+            <h:panelGrid columns="3">
                 席
-
+                <h:form>
+                    <h:inputText value="#{bb.seat_num}"/>
+                    <h:commandButton action="#{bb.addSeat_num()}" value="予約"/>
+                </h:form>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:commandButton action="#{bb.addTheater()}" value="登録" />

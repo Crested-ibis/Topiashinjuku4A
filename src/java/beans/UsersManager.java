@@ -25,13 +25,12 @@ public class UsersManager {
     EntityManager em;
 
     public List<Users> getFromDb(String field_users, String search_users, String operator_users) {
-//        TypedQuery<Users> query = null;
-//        if (operator_users.equals("like")) {
-            Query query = em.createQuery("select c from Users c where c.email like '%mail%'");
-//        } else {
+        TypedQuery<Users> query = null;
 
-//        }
-//        query.setParameter("valueOfKind", search_users);
+//            Query query = em.createQuery("select c from Users c where c.email like '%mail%'");
+        String sql = "select c from Users c where c.email like '%gmail%'";
+        query = em.createNamedQuery(sql, Users.class);
+//        query.setParameter(1, search_users);
         
         return query.getResultList();
     }

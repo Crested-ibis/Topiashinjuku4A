@@ -24,39 +24,39 @@
             <h:commandButton value="検索" action="#{bb.doSearchUsers()}"/><h:commandButton value="新規登録" action="#{myBb.next()}"/>
         </h:form>
         <!--結果-->
-        <h:dataTable value="#{bb.resultUsers}" var="user">
+        <h:dataTable value="#{bb.resultUsers}" var="u">
             <f:facet name="header">検索結果</f:facet>
             <h:column>
                 <f:facet name="header">ID</f:facet>
-                <h:outputText value="#{bb.user_id}"/>
+                <h:outputText value="#{u.id}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">名前（漢字）</f:facet>
-                <h:outputText value="#{bb.name_kanji}"/>
+                <h:outputText value="#{u.name_kanji}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">名前（カナ）</f:facet>
-                <h:outputText value="#{bb.name_kana}"/>
+                <h:outputText value="#{u.name_kana}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">電話番号</f:facet>
-                <h:outputText value="#{bb.tel}"/>
+                <h:outputText value="#{u.name_kana}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">メールアドレス</f:facet>
-                <h:outputText value="#{bb.email}"/>
+                <h:outputText value="#{u.email}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">生年月日</f:facet>
-                <h:outputText value="#{bb.age}"/>
+                <h:outputText value="#{u.age}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">性別</f:facet>
-                <h:outputText value="#{bb.sex}"/>
+                <h:outputText value="#{u.sex}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">登録日</f:facet>
-                <h:outputText value="#{bb.register}"/>
+                <h:outputText value="#{u.register}"/>
             </h:column>
         </h:dataTable>
     </h:body>

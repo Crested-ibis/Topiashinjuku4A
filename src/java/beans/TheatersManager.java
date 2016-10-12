@@ -25,4 +25,5 @@ public class TheatersManager {
         Query q = em.createQuery("select c from Theaters c");
         return q.getResultList();
     }
+    
 }

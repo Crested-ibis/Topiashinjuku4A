@@ -28,7 +28,14 @@ public class DBAccess extends SuperBb {
     protected String field_theaters;
     protected String search_theaters;
     protected String operator_theaters;
+    
+    // この配列の位置の席を予約済みとする
+    // addTheatersを動かす際には予め埋めておくこと
+    protected List<Integer> seat_nums;
 
+    // seat_numsを作るために用意
+    protected Integer seat_num;
+    
     private Users kari_user;
 
     protected Users result_user;
@@ -84,16 +91,34 @@ public class DBAccess extends SuperBb {
 
     }
     
-    public void addSeats(Seats seats){
-        seatsDb.add(seats);
-    }
 
     public void addTheater() {
 //        現在入力中のユーザ以外のシアター情報を更新したいなら、コッチを使う
 //        Users kari_user = (Users) usersDb.find(1);
+        
+        // Users,Theaters,Seatsは入れ子構造で更新する
 
         // kari_userはaddUserで保存したUsersオブジェクトそのもの。いちいちDBにアクセスるのも良くないかと思い、そのまま使った。
         Theaters th1 = new Theaters(room_num, movietitle, showdate, showtime, kari_user);
+
+            List<Seats> ls = th1.getSeatses();
+            // Theaters追加時にSeatsを初期化する
+            Seats s = null;
+            for (int i=0;i<100;i++){
+                s = new Seats(false,th1);
+                ls.add(s);
+            }
+            // seat_numsに基づき空席情報を埋める
+            s = new Seats(true,th1);
+            String str = "";
+            for(Integer num : seat_nums){
+                ls.set(num, s);
+                str += String.valueOf(num) + ", ";
+                
+            }
+            
+            System.out.println(str + "をtrueに変更");
+
         List<Theaters> li = kari_user.getTheaterses();
         li.add(th1);
         // 「追加」メソッドではあるが、実際には更新処理を行う
@@ -207,5 +232,24 @@ public class DBAccess extends SuperBb {
     public void setOperator_theaters(String operator_theaters) {
         this.operator_theaters = operator_theaters;
     }
+
+    public List<Integer> getSeat_nums() {
+        return seat_nums;
+    }
+
+    public void setSeat_nums(List<Integer> seat_nums) {
+        this.seat_nums = seat_nums;
+    }
+
+    public Integer getSeat_num() {
+        return seat_num;
+    }
+
+    public void setSeat_num(Integer seat_num) {
+        this.seat_num = seat_num;
+    }
+
+    
+    
 
 }
