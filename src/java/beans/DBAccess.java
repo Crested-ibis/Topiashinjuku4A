@@ -103,21 +103,15 @@ public class DBAccess extends SuperBb {
 
             List<Seats> ls = th1.getSeatses();
             // Theaters追加時にSeatsを初期化する
-            Seats s = null;
-            for (int i=0;i<100;i++){
-                s = new Seats(false,th1);
-                ls.add(s);
-            }
-            // seat_numsに基づき空席情報を埋める
-            s = new Seats(true,th1);
+
+            // seat_numsに基づき空席情報を埋める;
             String str = "";
             for(Integer num : seat_nums){
-                ls.set(num, s);
+                ls.add(new Seats(num));
                 str += String.valueOf(num) + ", ";
-                
             }
             
-            System.out.println(str + "をtrueに変更");
+            System.out.println(str + "を席テーブルに追加");
 
         List<Theaters> li = kari_user.getTheaterses();
         li.add(th1);

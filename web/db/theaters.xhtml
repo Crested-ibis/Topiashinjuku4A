@@ -50,8 +50,7 @@
                 <f:facet name="header">座席</f:facet>
                 <h:dataTable value="#{th.seatses}" var="s">                    
                         <h:column>
-                            <h:outputText value="■" rendered="#{s.hasSeat}"/>
-                            <h:outputText value="□" rendered="#{!s.hasSeat}"/>
+                            <h:outputText value="#{s.reservedSeatId}"/>
                         </h:column>
                 </h:dataTable>
             </h:column>

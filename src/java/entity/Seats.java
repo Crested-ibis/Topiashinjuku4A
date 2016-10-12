@@ -23,38 +23,16 @@ public class Seats implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer seatId;
-    private Boolean hasSeat;
-
-    private String test;
-    
+    private Integer reservedSeatId;
     private Theaters theaters;
-
 
     public Seats() {}
 
-    /**
-     * 新規登録用のIDなしバージョン
-     * @param hasSeat
-     * @param theaters 
-     */
-    public Seats(Boolean hasSeat, Theaters theaters) {
-        this.hasSeat = hasSeat;
-        this.theaters = theaters;
-        
-        this.test = "test";
+    public Seats(Integer reservedSeatId) {
+        this.reservedSeatId = reservedSeatId;
     }
-
-    /**
-     * 更新用のIDありバージョン
-     * @param id
-     * @param hasSeat
-     * @param theaters 
-     */
-    public Seats(Integer id, Boolean hasSeat, Theaters theaters) {
-        this.seatId = id;
-        this.hasSeat = hasSeat;
-        this.theaters = theaters;
-    }
+    
+    
 
     public Integer getSeatId() {
         return seatId;
@@ -63,13 +41,13 @@ public class Seats implements Serializable {
     public void setSeatId(Integer seatId) {
         this.seatId = seatId;
     }
-    
-    public Boolean getHasSeat() {
-        return hasSeat;
+
+    public Integer getReservedSeatId() {
+        return reservedSeatId;
     }
 
-    public void setHasSeat(Boolean hasSeat) {
-        this.hasSeat = hasSeat;
+    public void setReservedSeatId(Integer reservedSeatId) {
+        this.reservedSeatId = reservedSeatId;
     }
 
     public Theaters getTheaters() {
@@ -80,14 +58,5 @@ public class Seats implements Serializable {
         this.theaters = theaters;
     }
 
-    public String getTest() {
-        return test;
-    }
-
-    public void setTest(String test) {
-        this.test = test;
-    }
     
-    
-
 }

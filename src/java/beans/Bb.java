@@ -37,16 +37,9 @@ public class Bb extends DBAccess {
         // thにおけるList<Seats>を先に入れる
         List<Seats> ls = th.getSeatses();
 
-        Seats s = null;
-        for (int i = 0; i < 100; i++) {
-            s = new Seats(false, th);
-            ls.add(s);
-        }
-
-        s = new Seats(true, th);
-        int[] nums = {0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 50, 51, 52, 53};
+        int[] nums = {50, 51, 52, 53};
         for (int num : nums) {
-            ls.set(num, s);
+            ls.add(new Seats(num));
         }
 
         // uにおけるList<Theaters>を入れる
@@ -63,6 +56,14 @@ public class Bb extends DBAccess {
         
         Users editU = (Users)usersDb.find(usId);
         Theaters ths = new Theaters(3, "姑獲鳥の夏", "2010-08-05", "18:00", editU);
+        
+        List<Seats> ls2 = ths.getSeatses();
+        int[] nums2 = {15,16,17};
+        
+        for(int num:nums2){
+            ls2.add(new Seats(num));
+        }
+        
         List<Theaters> lt = editU.getTheaterses();
         lt.add(ths);
         usersDb.update(editU);
