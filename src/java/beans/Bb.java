@@ -128,6 +128,7 @@ public class Bb extends DBAccess {
 
     public String usersVarClear() {
         name_kanji = name_kana = tel = email = age = sex = register = null;
+        seat_nums = null;
         return null;
     }
 
@@ -199,42 +200,42 @@ public class Bb extends DBAccess {
         String url = request.getRequestURL().toString();
         switch (which) {
             case 1:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                if (url.equals("http://localhost:8080/CinemaTopia/faces/index_2.xhtml")) {
                     url = "db/index_content_users.xhtml";
                 } else {
                     url = "index_content_users.xhtml";
                 }
                 break;
             case 2:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                if (url.equals("http://localhost:8080/CinemaTopia/faces/index_2.xhtml")) {
                     url = "db/index_content_register.xhtml";
                 } else {
                     url = "index_content_register.xhtml";
                 }
                 break;
             case 3:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                if (url.equals("http://localhost:8080/CinemaTopia/faces/index_2.xhtml")) {
                     url = "db/index_content_theaters.xhtml";
                 } else {
                     url = "index_content_theaters.xhtml";
                 }
                 break;
             case 4:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                if (url.equals("http://localhost:8080/CinemaTopia/faces/index_2.xhtml")) {
                     url = "db/index_contentedit.xhtml";
                 } else {
                     url = "index_content_edit.xhtml";
                 }
                 break;
             case 5:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                if (url.equals("http://localhost:8080/CinemaTopia/faces/index_2.xhtml")) {
                     url = "index_2.xhtml";
                 } else {
                     url = "../index_2.xhtml";
                 }
                 break;
             case 6:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                if (url.equals("http://localhost:8080/CinemaTopia/faces/index.xhtml")) {
                     url = "db/select_seat.xhtml";
                 } else {
                     url = "select_seat.xhtml";

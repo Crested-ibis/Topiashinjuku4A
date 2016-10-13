@@ -27,7 +27,7 @@
                 </h:selectOneMenu>
                 <h:commandButton value="検索" action="#{bb.reload()}"/>
             </h:form>
-            <h:dataTable value="#{bb.allTheaters}" var="th">
+            <h:dataTable value="#{bb.resultTheaters}" var="th">
                 <f:facet name="header">検索結果</f:facet>
                 <h:column>
                     <f:facet name="header">上映ID</f:facet>
@@ -52,11 +52,10 @@
 
                 <h:column>
                     <f:facet name="header">座席</f:facet>
-                    <h:dataTable value="#{th.seatses}" var="s">                    
-                        <h:column>
+                    <ui:repeat value="#{th.seatses}" var="s">                    
                             <h:outputText value="#{s.reservedSeatId}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <h:outputText value=" "/>
+                    </ui:repeat>
                 </h:column>
             </h:dataTable>
         </ui:composition>

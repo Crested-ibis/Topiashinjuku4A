@@ -136,9 +136,8 @@
                         席
                         <ui:repeat value="#{th.seatses}" var="s">
                             <h:outputText value="#{s.reservedSeatId}" rendered="#{!bb.is_editable_theaters}"/> 
-                            <h:inputText value="未実装" rendered="#{bb.is_editable_theaters}">
-                                <f:validateRequired/>
-                            </h:inputText> <h:outputText/>
+                            <h:outputText value="未実装" rendered="#{bb.is_editable_theaters}"/>
+                            <h:outputText value=" "/>
                         </ui:repeat>
                     </h:panelGrid>
                     <h:panelGrid columns="3">
@@ -168,17 +167,22 @@
                 上映時間
                 <h:inputText value="#{bb.showtime}" />
             </h:panelGrid>
-            <h:panelGrid columns="3">
-                席
+            <h:panelGrid columns="4">
+                席番号
                 <h:form>
                     <h:inputText value="#{bb.seat_num}" size="2"/>
                     <h:commandButton action="#{bb.addSeat_num()}" value="予約">
+                        <!--<f:ajax execute=""/>-->
                     </h:commandButton>
                 </h:form>
+                <h:outputText value="   新たに予約する席番号："/>
+                <ui:repeat value="#{bb.seat_nums}" var="n">
+                    <h:outputText value="#{n}"/><h:outputText value=" "/>
+                </ui:repeat>
             </h:panelGrid>
             <h:panelGrid columns="2">
                 <h:commandButton action="#{bb.addTheater()}" value="登録" />
-                <h:commandButton value="クリア"/>
+                <h:commandButton action="#{bb.theatersVarClear()}" value="クリア"/>
             </h:panelGrid>
         </h:form>
         </ui:composition>
