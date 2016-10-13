@@ -143,11 +143,23 @@ public class Bb extends DBAccess {
             name_kanji = (String) event.getComponent().getAttributes().get("u_kanji");
             name_kana = (String) event.getComponent().getAttributes().get(u_kana);
             tel = (String) event.getComponent().getAttributes().get(u_tel);
-            email =  (String) event.getComponent().getAttributes().get(u_email);
-            age =  (String) event.getComponent().getAttributes().get(u_age);
-            sex =  (String) event.getComponent().getAttributes().get(u_sex);
-            password =  (String) event.getComponent().getAttributes().get(u_password);
-            register =  (String) event.getComponent().getAttributes().get(u_register);
+            email = (String) event.getComponent().getAttributes().get(u_email);
+            age = (String) event.getComponent().getAttributes().get(u_age);
+            sex = (String) event.getComponent().getAttributes().get(u_sex);
+            password = (String) event.getComponent().getAttributes().get(u_password);
+            register = (String) event.getComponent().getAttributes().get(u_register);
+        } catch (Exception e) {
+            System.err.println("チェック時にプロパティの変数入れられず");
+        }
+    }
+
+    public void attrListenerTheater(ActionEvent event) {
+        try {
+            theater_id = (Integer) event.getComponent().getAttributes().get(t_id);
+            room_num = (Integer) event.getComponent().getAttributes().get(t_room);
+            movietitle = (String) event.getComponent().getAttributes().get(t_mtitle);
+            showdate = (String) event.getComponent().getAttributes().get(t_sdate);
+            showtime = (String) event.getComponent().getAttributes().get(t_stime);
         } catch (Exception e) {
             System.err.println("チェック時にプロパティの変数入れられず");
         }
@@ -228,8 +240,8 @@ public class Bb extends DBAccess {
                     url = "select_seat.xhtml";
                 }
                 break;
-                default:
-                    System.out.println("該当なし");
+            default:
+                System.out.println("該当なし");
         }
         return url;
     }

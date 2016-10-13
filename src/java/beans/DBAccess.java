@@ -165,8 +165,7 @@ public class DBAccess extends SuperBb {
     }
 
     public void updateTheater() {
-
-        Theaters theater = (Theaters) theatersDb.find(theater_info_id);
+        Theaters theater = (Theaters) theatersDb.find(theater_id);
 
         Integer nowId = theater.getId();
         theater = new Theaters(nowId, room_num, movietitle, showdate, showtime);

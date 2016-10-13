@@ -94,35 +94,48 @@
                 <h:form>
                     <h:panelGrid columns="2">
                         予約情報
-                        <h:selectBooleanCheckbox value="#{bb.is_editable_theaters}" onclick="submit()" />
+                        <h:form>
+                            <h:selectBooleanCheckbox value="#{bb.is_editable_theaters}"/>
+                            <h:commandButton action="#{bb.reload()}" actionListener="#{bb.attrListenerTheater}" value="編集">
+                                <f:attribute name="#{bb.t_id}" value="#{th.id}"/>
+                                <f:attribute name="#{bb.t_room}" value="#{th.room_num}"/>
+                                <f:attribute name="#{bb.t_mtitle}" value="#{th.movietitle}"/>
+                                <f:attribute name="#{bb.t_sdate}" value="#{th.showdate}"/>
+                                <f:attribute name="#{bb.t_stime}" value="#{th.showtime}"/>
+                            </h:commandButton>
+                        </h:form>
                     </h:panelGrid>
                     <h:panelGrid columns="3">
                         ID
-                        <h:outputText value="#{th.id}"/> <h:outputText/>
+                        <h:outputText value="#{th.id}"/>
+                        <h:outputText value="#{bb.theater_id}"/>
                         シアターNo
                         <h:outputText value="#{th.room_num}" rendered="#{!bb.is_editable_theaters}"/> 
-                        <h:inputText value="#{th.room_num}" rendered="#{bb.is_editable_theaters}">
+                        <h:inputText value="#{bb.room_num}" rendered="#{bb.is_editable_theaters}">
                             <f:validateLongRange minimum="1" maximum="4"/> <f:validateRequired/>
                         </h:inputText> <h:outputText/>
                         映画タイトル
                         <h:outputText value="#{th.movietitle}" rendered="#{!bb.is_editable_theaters}"/> 
-                        <h:inputText value="#{th.movietitle}" rendered="#{bb.is_editable_theaters}">
+                        <h:inputText value="#{bb.movietitle}" rendered="#{bb.is_editable_theaters}">
                             <f:validateRequired/>
-                        </h:inputText> <h:outputText/>
+                        </h:inputText> 
+                        <h:outputText/>
                         日付
                         <h:outputText value="#{th.showdate}" rendered="#{!bb.is_editable_theaters}"/> 
-                        <h:inputText value="#{th.showdate}" rendered="#{bb.is_editable_theaters}">
-                            <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
-                        </h:inputText> <h:outputText value="例　2015/1/1　×　2015-01-01 ○"/>
+                        <h:inputText value="#{bb.showdate}" rendered="#{bb.is_editable_theaters}">
+                            <!--<f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>-->
+                        </h:inputText> 
+                        <h:outputText value="例　2015/1/1　×　2015-01-01 ○"/>
                         上映開始時間
                         <h:outputText value="#{th.showtime}" rendered="#{!bb.is_editable_theaters}"/> 
-                        <h:inputText value="#{th.showtime}" rendered="#{bb.is_editable_theaters}">
-                            <f:convertDateTime type="time" pattern="HH:mm" timeZone="Asia/Tokyo"/>
-                        </h:inputText> <h:outputText value="例　900　×　9:00 ○"/>
+                        <h:inputText value="#{bb.showtime}" rendered="#{bb.is_editable_theaters}">
+                            <!--<f:convertDateTime type="time" pattern="HH:mm" timeZone="Asia/Tokyo"/>-->
+                        </h:inputText>
+                        <h:outputText value="例　900　×　9:00 ○"/>
                         席
                         <ui:repeat value="#{th.seatses}" var="s">
                             <h:outputText value="#{s.reservedSeatId}" rendered="#{!bb.is_editable_theaters}"/> 
-                            <h:inputText value="#{s.reservedSeatId}" rendered="#{bb.is_editable_theaters}">
+                            <h:inputText value="未実装" rendered="#{bb.is_editable_theaters}">
                                 <f:validateRequired/>
                             </h:inputText> <h:outputText/>
                         </ui:repeat>

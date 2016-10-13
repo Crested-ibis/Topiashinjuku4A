@@ -15,6 +15,7 @@ public class SuperBb implements Serializable {
     // サーブレットにMapするキーを定数にして取り出し可能にする
     // 定数名に大文字を用いるとなんか妙なことになるので注意
     protected String deleteTheaterId = "deleteTheaterId";
+    
     protected String u_id = "uUserId";
     protected String u_kanji = "uUserNKanji";
     protected String u_kana = "uUserNKana";
@@ -24,6 +25,12 @@ public class SuperBb implements Serializable {
     protected String u_sex = "uUserSex";
     protected String u_password = "uUserPassword";
     protected String u_register = "uUserRegister";
+
+    protected String t_id = "tid";
+    protected String t_room = "troom";
+    protected String t_mtitle ="tmtitle";
+    protected String t_sdate = "tsdate";
+    protected String t_stime = "tstime";
 
     protected Integer user_id;
     protected Integer theater_id;
@@ -303,8 +310,6 @@ public class SuperBb implements Serializable {
         return u_tel;
     }
 
-    
-    
     public String getU_email() {
         return u_email;
     }
@@ -324,5 +329,27 @@ public class SuperBb implements Serializable {
     public String getU_register() {
         return u_register;
     }
+
+    public String getT_id() {
+        return t_id;
+    }
+
+    public String getT_room() {
+        return t_room;
+    }
+
+    public String getT_mtitle() {
+        return t_mtitle;
+    }
+
+    public String getT_sdate() {
+        return t_sdate;
+    }
+
+    public String getT_stime() {
+        return t_stime;
+    }
+    
+    
 
 }
