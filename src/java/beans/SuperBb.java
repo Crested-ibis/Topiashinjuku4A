@@ -1,15 +1,33 @@
 package beans;
 
+import entity.Theaters;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author am
  */
 public class SuperBb implements Serializable {
-    // DBAccess 用スーパークラス
+
+    // サーブレットにMapするキーを定数にして取り出し可能にする
+    // 定数名に大文字を用いるとなんか妙なことになるので注意
+    protected String deleteTheaterId = "deleteTheaterId";
+    protected String u_id = "uUserId";
+    protected String u_kanji = "uUserNKanji";
+    protected String u_kana = "uUserNKana";
+    protected String u_tel = "uUserTel";
+    protected String u_email = "uUserEmail";
+    protected String u_age = "uUserAge";
+    protected String u_sex = "uUserSex";
+    protected String u_password = "uUserPassword";
+    protected String u_register = "uUserRegister";
+
+    protected Integer user_id;
+    protected Integer theater_id;
+    protected Integer seat_id;
 
     protected String name_kanji;
     protected String name_kana;
@@ -98,6 +116,7 @@ public class SuperBb implements Serializable {
     }
 
     public void setIs_editable_users(Boolean is_editable_users) {
+
         this.is_editable_users = is_editable_users;
     }
 
@@ -122,6 +141,30 @@ public class SuperBb implements Serializable {
 
     public void setItems_sex(Map<String, String> items_sex) {
         SuperBb.items_sex = items_sex;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public Integer getTheater_id() {
+        return theater_id;
+    }
+
+    public void setTheater_id(Integer theater_id) {
+        this.theater_id = theater_id;
+    }
+
+    public Integer getSeat_id() {
+        return seat_id;
+    }
+
+    public void setSeat_id(Integer seat_id) {
+        this.seat_id = seat_id;
     }
 
     public String getName_kanji() {
@@ -238,6 +281,48 @@ public class SuperBb implements Serializable {
 
     public void setHasSeats(Boolean[] hasSeats) {
         this.hasSeats = hasSeats;
+    }
+
+    public String getDeleteTheaterId() {
+        return deleteTheaterId;
+    }
+
+    public String getU_id() {
+        return u_id;
+    }
+
+    public String getU_kanji() {
+        return u_kanji;
+    }
+
+    public String getU_kana() {
+        return u_kana;
+    }
+
+    public String getU_tel() {
+        return u_tel;
+    }
+
+    
+    
+    public String getU_email() {
+        return u_email;
+    }
+
+    public String getU_age() {
+        return u_age;
+    }
+
+    public String getU_sex() {
+        return u_sex;
+    }
+
+    public String getU_password() {
+        return u_password;
+    }
+
+    public String getU_register() {
+        return u_register;
     }
 
 }

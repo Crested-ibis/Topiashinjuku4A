@@ -20,12 +20,6 @@ import javax.faces.context.FacesContext;
  */
 public class DBAccess extends SuperBb {
 
-    // サーブレットにMapするキーを定数にして取り出し可能にする
-    protected String deleteTheaterId = "deleteTheaterId";
-
-    protected Integer user_id;
-    protected Integer theater_id;
-    protected Integer seat_id;
     protected String field_users;
     protected String search_users;
     protected String operator_users;
@@ -86,11 +80,18 @@ public class DBAccess extends SuperBb {
     }
 
     public void deleteUser() {
+        try {
+            usersDb.delete(kari_user);
+        } catch (Exception e) {
+            System.err.println("ユーザ削除失敗");
+        }
     }
 
     public List<Users> findUsers() {
         List<Users> li = new ArrayList<>();
 
+        // サーブレットから値を取得
+        // ここはリクエストスコープなので、ページを遷移すると消えてしまうので注意
         Map<String, String> param = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String uid = param.get("ed_user");
 
@@ -164,6 +165,7 @@ public class DBAccess extends SuperBb {
     }
 
     public void updateTheater() {
+
         Theaters theater = (Theaters) theatersDb.find(theater_info_id);
 
         Integer nowId = theater.getId();
@@ -181,13 +183,13 @@ public class DBAccess extends SuperBb {
     public void deleteTheater() {
         Map<String, String> param = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String tid = param.get(deleteTheaterId);
-        
-        if(tid != null){
+
+        if (tid != null) {
             Integer itid = Integer.valueOf(tid);
-            Theaters dth = (Theaters)theatersDb.find(itid);
+            Theaters dth = (Theaters) theatersDb.find(itid);
             theatersDb.delete(dth);
         }
-        
+
     }
 
     public void getHasSeat() {
@@ -199,30 +201,6 @@ public class DBAccess extends SuperBb {
 
     public void setResult_user(Users result_user) {
         this.result_user = result_user;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    public Integer getTheater_id() {
-        return theater_id;
-    }
-
-    public void setTheater_id(Integer theater_id) {
-        this.theater_id = theater_id;
-    }
-
-    public Integer getSeat_id() {
-        return seat_id;
-    }
-
-    public void setSeat_id(Integer seat_id) {
-        this.seat_id = seat_id;
     }
 
     public String getField_users() {
@@ -287,10 +265,6 @@ public class DBAccess extends SuperBb {
 
     public void setSeat_num(Integer seat_num) {
         this.seat_num = seat_num;
-    }
-
-    public String getDeleteTheaterId() {
-        return deleteTheaterId;
     }
 
 }

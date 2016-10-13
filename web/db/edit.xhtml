@@ -12,60 +12,79 @@
             <h:form>
                 <h2>#{u.name_kanji}様 詳細情報</h2>
                 <hr/>
-                <h:panelGrid columns="2">
-                    ユーザ情報   <h:selectBooleanCheckbox value="#{bb.is_editable_users}" onclick="submit()" />
+                <h:panelGrid columns="3">
+                    ユーザ情報
+                    <h:form>
+                        <h:selectBooleanCheckbox value="#{bb.is_editable_users}"/>
+                        <h:commandButton action="#{bb.reload()}" actionListener="#{bb.attrListener}" value="編集">
+                            <f:attribute name="#{bb.u_id}" value="#{u.id}"/>
+                            <f:attribute name="u_kanji" value="#{u.name_kanji}"/>
+                            <f:attribute name="#{bb.u_kana}" value="#{u.name_kana}"/>
+                            <f:attribute name="#{bb.u_tel}" value="#{u.tel}"/>
+                            <f:attribute name="#{bb.u_email}" value="#{u.email}"/>
+                            <f:attribute name="#{bb.u_age}" value="#{u.age}"/>
+                            <f:attribute name="#{bb.u_sex}" value="#{u.sex}"/>
+                            <f:attribute name="#{bb.u_password}" value="#{u.password}"/>
+                            <f:attribute name="#{bb.u_register}" value="#{u.register}"/>
+                        </h:commandButton>
+                    </h:form>
                 </h:panelGrid>
             </h:form>
             <h:form>
                 <h:panelGrid columns="3">
                     ID
                     <h:outputText value="#{u.id}"/>
-                    <h:outputText value="IDは自動生成"/>
+                    <h:outputText value="#{bb.theater_id}"/>
                     名前（漢字）
                     <h:outputText value="#{u.name_kanji}" rendered="#{!bb.is_editable_users}" /> 
-                    <h:inputText value="#{u.name_kanji}" rendered="#{bb.is_editable_users}">
+                    <h:inputText value="#{bb.name_kanji}" rendered="#{bb.is_editable_users}">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:outputText value="例　鈴木太郎　×　鈴木　太郎　○" />
                     名前（カナ）
                     <h:outputText value="#{u.name_kana}" rendered="#{!bb.is_editable_users}" />
-                    <h:inputText value="#{u.name_kana}" rendered="#{bb.is_editable_users}">
+                    <h:inputText value="#{bb.name_kana}" rendered="#{bb.is_editable_users}">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:outputText value="例　スズキタロウ　×　スズキ　タロウ　○"/>
                     電話
                     <h:outputText value="#{u.tel}" rendered="#{!bb.is_editable_users}" />
-                    <h:inputText value="#{u.tel}" rendered="#{bb.is_editable_users}">
+                    <h:inputText value="#{bb.tel}" rendered="#{bb.is_editable_users}">
                         <f:validateRequired/>
-                    </h:inputText><h:outputText value="例　09011111111 ×　090-1111-1111　○" />
+                    </h:inputText>
+                    <h:outputText value="例　09011111111 ×　090-1111-1111　○" />
                     メール
                     <h:outputText value="#{u.email}" rendered="#{!bb.is_editable_users}" />
-                    <h:inputText value="#{u.email}" rendered="#{bb.is_editable_users}">
-                        <f:validateRequired/></h:inputText><h:outputText value="例 xxxxx@gmail.com　○" />
+                    <h:inputText value="#{bb.email}" rendered="#{bb.is_editable_users}">
+                        <f:validateRequired/>
+                    </h:inputText>
+                    <h:outputText value="例 xxxxx@gmail.com　○" />
                     生年月日　
                     <h:outputText value="#{u.age}" rendered="#{!bb.is_editable_users}" />
-                    <h:inputText value="#{u.age}" rendered="#{bb.is_editable_users}">
-                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+                    <h:inputText value="#{bb.age}" rendered="#{bb.is_editable_users}">
+                        <!--<f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>-->
                     </h:inputText>
                     <h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
-                    性別　<h:selectOneRadio value="#{u.sex}" rendered="#{bb.is_editable_users}">
+                    性別　
+                    <h:selectOneRadio value="#{bb.sex}" rendered="#{bb.is_editable_users}">
                         <f:selectItems value="#{bb.items_sex}"/></h:selectOneRadio>
                     <h:outputText value="#{u.sex}" rendered="#{!bb.is_editable_users}"/>
                     <h:outputText value="どちらかを選択してください" />
                     パスワード
                     <h:outputText value="#{u.password}" rendered="#{!bb.is_editable_users}" /> 
-                    <h:inputText value="#{u.password}" rendered="#{bb.is_editable_users}">
+                    <h:inputText value="#{bb.password}" rendered="#{bb.is_editable_users}">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:outputText value="何文字～何文字以内" />
                     登録日<h:outputText value="#{u.register}" rendered="#{!bb.is_editable_users}" />
-                    <h:inputText value="#{u.register}" rendered="#{bb.is_editable_users}">
-                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+                    <h:inputText value="#{bb.register}" rendered="#{bb.is_editable_users}">    
                     </h:inputText>
                     <h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
                 </h:panelGrid>
                 <h:panelGrid columns="3">
-                    <h:commandButton value="更新" action="#{bb.updateUser()}"/>
+                    <h:commandButton value="更新" action="#{bb.updateUser()}">
+
+                    </h:commandButton>
                     <h:commandButton value="クリア" action="#{bb.usersVarClear()}"/>
                     <h:commandButton value="削除" action="#{bb.deleteUser()}"/>
                 </h:panelGrid>

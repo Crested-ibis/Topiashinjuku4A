@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -134,6 +135,23 @@ public class Bb extends DBAccess {
         theater_info_id = room_num = seat_id = null;
         movietitle = showdate = showtime = null;
         return null;
+    }
+
+    public void attrListener(ActionEvent event) {
+        try {
+            user_id = (Integer) event.getComponent().getAttributes().get(u_id);
+            name_kanji = (String) event.getComponent().getAttributes().get("u_kanji");
+            name_kana = (String) event.getComponent().getAttributes().get(u_kana);
+            tel = (String) event.getComponent().getAttributes().get(u_tel);
+            email =  (String) event.getComponent().getAttributes().get(u_email);
+            age =  (String) event.getComponent().getAttributes().get(u_age);
+            sex =  (String) event.getComponent().getAttributes().get(u_sex);
+            password =  (String) event.getComponent().getAttributes().get(u_password);
+            register =  (String) event.getComponent().getAttributes().get(u_register);
+        } catch (Exception e) {
+            System.err.println("チェック時にプロパティの変数入れられず");
+        }
+
     }
 
     public String reload() {
