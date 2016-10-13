@@ -26,7 +26,8 @@
                 </h:commandButton>
                 <h:commandButton value="新規登録" action="#{bb.goRegister()}"/>
             </h:form>
-            <h:dataTable  value="#{bb.allUsers}" var="u">
+            <p/>
+            <h:dataTable  value="#{bb.allUsers}" var="u" border="1" cellspacing="0">
                 <f:facet name="header">検索結果</f:facet>
                 <h:column>
                     <f:facet name="header">ID</f:facet>

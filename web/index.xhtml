@@ -8,14 +8,18 @@
     </h:head>
     <h:body>
         <ui:composition>
+            <div>
+                <h3>シネマとぴあ業務システム</h3>
+            </div>
+            <div>
                 <h:form>
-                    <h:panelGrid columns="5">
+                    <h:panelGrid columns="3" id="index_link">
                         <h:commandLink action="#{bb.goIndex()}">トップ</h:commandLink>    
                         <h:commandLink action="#{bb.goUsers()}">ユーザ情報</h:commandLink>
                         <h:commandLink action="#{bb.goTheaters()}">上映情報</h:commandLink>
-                                 
                     </h:panelGrid>
                 </h:form>
+            </div>
         </ui:composition>
     </h:body>
 </html>

@@ -8,6 +8,7 @@
         <title>詳細ページ</title>
     </h:head>
     <h:body>
+        <ui:composition>
         <ui:repeat value="#{bb.findUsers()}" var="u">
             <h:form>
                 <h2>#{u.name_kanji}様 詳細情報</h2>
@@ -180,5 +181,6 @@
                 <h:commandButton value="クリア"/>
             </h:panelGrid>
         </h:form>
+        </ui:composition>
     </h:body>
 </html>
