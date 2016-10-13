@@ -64,8 +64,7 @@
                     </h:inputText>
                     <h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
                 </h:panelGrid>
-                <h:panelGrid columns="4">
-                    <h:commandButton value="アウトプット" action="#{bb.goOutput()}" />
+                <h:panelGrid columns="3">
                     <h:commandButton value="更新" action="#{bb.updateUser()}"/>
                     <h:commandButton value="クリア" action="#{bb.usersVarClear()}"/>
                     <h:commandButton value="削除" action="#{bb.deleteUser()}"/>
@@ -109,60 +108,45 @@
                             </h:inputText> <h:outputText/>
                         </ui:repeat>
                     </h:panelGrid>
-                    <h:panelGrid columns="4">
-                        <h:commandButton value="アウトプット" action="#{bb.goOutput()}" />
+                    <h:panelGrid columns="3">
                         <h:commandButton value="更新" action="#{bb.updateTheater()}"/>
                         <h:commandButton value="クリア" action="#{bb.theatersVarClear()}"/>
-                        <h:commandButton value="削除" action="#{bb.deleteTheater()}"/>
+                        <h:commandButton value="削除" action="#{bb.deleteTheater()}">
+                            <f:param name="#{bb.deleteTheaterId}" value="#{th.id}"/>
+                        </h:commandButton>
                     </h:panelGrid>
                 </h:form>
             </ui:repeat>
-            <hr/>
-            <h:form>
-                <h2>追加予約</h2> <h:selectBooleanCheckbox value="#{bb.is_editable_add_reservation}" onclick="submit()"/>
-                <h:panelGrid columns="2">
-                    シアターNo
-                    <h:inputText value="#{bb.room_num}" rendered="#{bb.is_editable_add_reservation}">
-                        <f:validateLongRange minimum="1" maximum="4"/> <f:validateRequired/>
-                    </h:inputText>
-                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
-                    映画タイトル
-                    <h:inputText value="#{bb.movietitle}" rendered="#{bb.is_editable_add_reservation}">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
-                    上映月日
-                    <h:inputText value="#{bb.showdate}" rendered="#{bb.is_editable_add_reservation}">
-                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
-                    </h:inputText>
-                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
-                    上映時間
-                    <h:inputText value="#{bb.showtime}" rendered="#{bb.is_editable_add_reservation}">
-                        <f:convertDateTime type="time" pattern="HH:mm" timeZone="Asia/Tokyo"/>  
-                    </h:inputText>
-                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
-                </h:panelGrid>
-                <h:panelGrid columns="3" rendered="#{bb.is_editable_add_reservation}">
-                    席
-                    <h:form>
-                        <h:inputText value="#{bb.seat_num}" size="2"/>
-                        <h:commandButton action="#{bb.addSeat_num()}" value="予約">
-                            <f:ajax execute="dt_seat"/>
-                        </h:commandButton>
-                        <h:dataTable id="dt_seat" value="#{bb.seat_nums}" var="n">
-                            <h:column>
-                                <h:outputText value="#{n}"/>
-                            </h:column>
-                        </h:dataTable>
-                    </h:form>
-                </h:panelGrid>
-                <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
-                <h:panelGrid columns="2">
-                    <h:commandButton action="#{bb.addTheater()}" value="登録" />
-                    <f:param name="#{bb.newReservedUserId}" value="#{u.id}"/> 
-                    <h:commandButton value="クリア"/>
-                </h:panelGrid>
-            </h:form>
         </ui:repeat>
+        <hr/>
+        <h2>追加予約</h2>
+        <h:form>
+            <h:panelGrid columns="2">
+                シアターNo
+                <h:inputText value="#{bb.room_num}" >
+                    <f:validateLongRange minimum="1" maximum="4"/> <f:validateRequired/>
+                </h:inputText>
+                映画タイトル
+                <h:inputText value="#{bb.movietitle}" >
+                    <f:validateRequired/>
+                </h:inputText>
+                上映月日
+                <h:inputText value="#{bb.showdate}" />
+                上映時間
+                <h:inputText value="#{bb.showtime}" />
+            </h:panelGrid>
+            <h:panelGrid columns="3">
+                席
+                <h:form>
+                    <h:inputText value="#{bb.seat_num}" size="2"/>
+                    <h:commandButton action="#{bb.addSeat_num()}" value="予約">
+                    </h:commandButton>
+                </h:form>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:commandButton action="#{bb.addTheater()}" value="登録" />
+                <h:commandButton value="クリア"/>
+            </h:panelGrid>
+        </h:form>
     </h:body>
 </html>
