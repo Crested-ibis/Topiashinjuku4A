@@ -118,27 +118,31 @@
                 </h:form>
             </ui:repeat>
             <hr/>
-            <h2>追加予約</h2>
             <h:form>
+                <h2>追加予約</h2> <h:selectBooleanCheckbox value="#{bb.is_editable_add_reservation}" onclick="submit()"/>
                 <h:panelGrid columns="2">
                     シアターNo
-                    <h:inputText value="#{bb.room_num}" >
+                    <h:inputText value="#{bb.room_num}" rendered="#{bb.is_editable_add_reservation}">
                         <f:validateLongRange minimum="1" maximum="4"/> <f:validateRequired/>
                     </h:inputText>
+                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
                     映画タイトル
-                    <h:inputText value="#{bb.movietitle}" >
+                    <h:inputText value="#{bb.movietitle}" rendered="#{bb.is_editable_add_reservation}">
                         <f:validateRequired/>
                     </h:inputText>
+                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
                     上映月日
-                    <h:inputText value="#{bb.showdate}" >
+                    <h:inputText value="#{bb.showdate}" rendered="#{bb.is_editable_add_reservation}">
                         <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
                     </h:inputText>
+                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
                     上映時間
-                    <h:inputText value="#{bb.showtime}" >
+                    <h:inputText value="#{bb.showtime}" rendered="#{bb.is_editable_add_reservation}">
                         <f:convertDateTime type="time" pattern="HH:mm" timeZone="Asia/Tokyo"/>  
                     </h:inputText>
+                    <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
                 </h:panelGrid>
-                <h:panelGrid columns="3">
+                <h:panelGrid columns="3" rendered="#{bb.is_editable_add_reservation}">
                     席
                     <h:form>
                         <h:inputText value="#{bb.seat_num}" size="2"/>
@@ -152,6 +156,7 @@
                         </h:dataTable>
                     </h:form>
                 </h:panelGrid>
+                <h:outputText value="編集不可" rendered="#{!bb.is_editable_add_reservation}"/>
                 <h:panelGrid columns="2">
                     <h:commandButton action="#{bb.addTheater()}" value="登録" />
                     <f:param name="#{bb.newReservedUserId}" value="#{u.id}"/> 

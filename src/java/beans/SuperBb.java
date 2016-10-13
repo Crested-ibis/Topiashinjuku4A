@@ -27,6 +27,15 @@ public class SuperBb implements Serializable {
     protected Boolean[] hasSeats;
     protected Boolean is_editable_users = false;
     protected Boolean is_editable_theaters = false;
+    protected Boolean is_editable_add_reservation = false;
+
+    public Boolean getIs_editable_add_reservation() {
+        return is_editable_add_reservation;
+    }
+
+    public void setIs_editable_add_reservation(Boolean is_editable_add_reservation) {
+        this.is_editable_add_reservation = is_editable_add_reservation;
+    }
 
     protected static Map<String, String> items_users_field;
     protected static Map<String, String> items_users_operator;
@@ -230,6 +239,5 @@ public class SuperBb implements Serializable {
     public void setHasSeats(Boolean[] hasSeats) {
         this.hasSeats = hasSeats;
     }
-    
-    
+
 }
