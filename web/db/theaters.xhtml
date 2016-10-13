@@ -25,7 +25,7 @@
             </h:selectOneMenu>
             <h:commandButton value="検索" action="#{bb.reload()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
         </h:form>
-        <h:dataTable value="#{bb.resultTheaters}" var="th">
+        <h:dataTable value="#{bb.allTheaters}" var="th">
             <f:facet name="header">検索結果</f:facet>
             <h:column>
                 <f:facet name="header">上映ID</f:facet>

@@ -25,7 +25,7 @@
             </h:commandButton>
             <h:commandButton value="新規登録" action="#{myBb.next()}"/>
         </h:form>
-        <h:dataTable id="dt_u" value="#{bb.resultUsers}" var="u">
+        <h:dataTable id="dt_u" value="#{bb.allUsers}" var="u">
             <f:facet name="header">検索結果</f:facet>
             <h:column>
                 <f:facet name="header">ID</f:facet>

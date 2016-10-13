@@ -43,7 +43,7 @@
                 </h:inputText><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
             </h:panelGrid>
             <h:panelGrid columns="2">
-                <h:commandButton action="#{bb.addUser()}" value="登録" />
+                <h:commandButton action="#{bb.addRegisterUser()}" value="登録" />
                 <h:commandButton action="#{bb.usersVarClear()}" value="クリア"/>
             </h:panelGrid>
         </h:form>
@@ -70,7 +70,9 @@
                 席
                 <h:form>
                     <h:inputText value="#{bb.seat_num}"/>
-                    <h:commandButton action="#{bb.addSeat_num()}" value="予約"/>
+                    <h:commandButton action="#{bb.addSeat_num()}" value="予約">
+                        <f:ajax execute="@form"/>
+                    </h:commandButton>
                 </h:form>
             </h:panelGrid>
             <h:panelGrid columns="2">

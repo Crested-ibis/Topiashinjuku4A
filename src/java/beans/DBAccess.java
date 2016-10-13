@@ -21,7 +21,7 @@ import javax.faces.context.FacesContext;
 public class DBAccess extends SuperBb {
 
     // サーブレットにMapするキーを定数にして取り出し可能にする
-    protected String newReservedUserId = "newReservedUserId";
+    protected String deleteTheaterId = "deleteTheaterId";
 
     protected Integer user_id;
     protected Integer theater_id;
@@ -61,10 +61,12 @@ public class DBAccess extends SuperBb {
         super();
     }
 
-    private void init() {
+    public void addUser() {
+        kari_user = new Users(name_kanji, name_kana, tel, email, age, sex, password, register);
+        usersDb.add(kari_user);
     }
 
-    public void addUser() {
+    public void addRegisterUser() {
         kari_user = new Users(name_kanji, name_kana, tel, email, age, sex, password, register);
         usersDb.add(kari_user);
     }
@@ -91,9 +93,18 @@ public class DBAccess extends SuperBb {
 
         Map<String, String> param = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String uid = param.get("ed_user");
-        Integer id = Integer.valueOf(uid);
 
-        li.add((Users) usersDb.find(id));
+        Users u = null;
+
+        if (uid != null) {
+            Integer id = Integer.valueOf(uid);
+            u = (Users) usersDb.find(id);
+            kari_user = u;
+        } else {
+            u = kari_user;
+        }
+
+        li.add(u);
 
         return li;
     }
@@ -117,35 +128,39 @@ public class DBAccess extends SuperBb {
     public void addTheater() {
 //        現在入力中のユーザ以外のシアター情報を更新したいなら、コッチを使う
         Map<String, String> param = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        String uid = param.get(newReservedUserId);
-        Integer id = Integer.valueOf(uid);
+        String uid = param.get("ed_user");
+        Users u = null;
 
-        if (id != null) {
-            Users u = (Users) usersDb.find(id);
-
-            // Users,Theaters,Seatsは入れ子構造で更新する
-            // kari_userはaddUserで保存したUsersオブジェクトそのもの。いちいちDBにアクセスるのも良くないかと思い、そのまま使った。
-            Theaters th1 = new Theaters(room_num, movietitle, showdate, showtime, u);
-
-            List<Seats> ls = th1.getSeatses();
-            // Theaters追加時にSeatsを初期化する
-
-            // seat_numsに基づき空席情報を埋める;
-            String str = "";
-            for (Integer num : seat_nums) {
-                ls.add(new Seats(num));
-                str += String.valueOf(num) + ", ";
-            }
-
-            System.out.println(str + "を席テーブルに追加");
-
-            List<Theaters> li = u.getTheaterses();
-            li.add(th1);
-            // 「追加」メソッドではあるが、実際には更新処理を行う
-            usersDb.update(u);
-            // 追加した後にList< Theaters>を空にしないと前の入力が一緒に書き込まれる。なぜ？
-            li.clear();
+        if (uid != null) {
+            Integer id = Integer.valueOf(uid);
+            u = (Users) usersDb.find(id);
+        } else {
+            u = kari_user;
         }
+
+        // Users,Theaters,Seatsは入れ子構造で更新する
+        // kari_userはaddUserで保存したUsersオブジェクトそのもの。いちいちDBにアクセスるのも良くないかと思い、そのまま使った。
+        Theaters th1 = new Theaters(room_num, movietitle, showdate, showtime, u);
+
+        List<Seats> ls = th1.getSeatses();
+        // Theaters追加時にSeatsを初期化する
+
+        // seat_numsに基づき空席情報を埋める;
+        String str = "";
+        for (Integer num : seat_nums) {
+            ls.add(new Seats(num));
+            str += String.valueOf(num) + ", ";
+        }
+
+        System.out.println(str + "を席テーブルに追加");
+
+        List<Theaters> li = u.getTheaterses();
+        li.add(th1);
+        // 「追加」メソッドではあるが、実際には更新処理を行う
+        usersDb.update(u);
+        // 追加した後にList< Theaters>を空にしないと前の入力が一緒に書き込まれる。なぜ？
+        li.clear();
+
     }
 
     public void updateTheater() {
@@ -164,6 +179,15 @@ public class DBAccess extends SuperBb {
     }
 
     public void deleteTheater() {
+        Map<String, String> param = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String tid = param.get(deleteTheaterId);
+        
+        if(tid != null){
+            Integer itid = Integer.valueOf(tid);
+            Theaters dth = (Theaters)theatersDb.find(itid);
+            theatersDb.delete(dth);
+        }
+        
     }
 
     public void getHasSeat() {
@@ -265,8 +289,8 @@ public class DBAccess extends SuperBb {
         this.seat_num = seat_num;
     }
 
-    public String getNewReservedUserId() {
-        return newReservedUserId;
+    public String getDeleteTheaterId() {
+        return deleteTheaterId;
     }
 
 }

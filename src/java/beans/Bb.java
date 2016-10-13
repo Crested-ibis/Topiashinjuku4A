@@ -95,17 +95,27 @@ public class Bb extends DBAccess {
         tel = "068-365-8754";
         email = "seppuku@gmail.com";
         age = "1940-03-5";
+        sex = "男";
         password = "biyt97645";
         register = "2016-10-12";
+
+//        addUser();
 
         room_num = 1;
         movietitle = "金閣寺";
         showdate = "1976-01-26";
         showtime = "09:16";
 
+//        seat_num = 18;
+//        addSeat_num();
+//        seat_num = 19;
+//        addSeat_num();
+
     }
 
     public void addSeat_num() {
+        System.out.println("beans.Bb.addSeat_num()");
+        
         if (seat_nums == null) {
             seat_nums = new ArrayList<>();
         }
@@ -114,16 +124,6 @@ public class Bb extends DBAccess {
             System.out.println(String.valueOf(seat_num) + "をseat_numsに追加");
             seat_num = null;
         }
-    }
-
-    private void initRegisterPage() {
-
-    }
-
-    private void RegisterPage() {
-    }
-
-    public void dispSeats() {
     }
 
     public String usersVarClear() {
