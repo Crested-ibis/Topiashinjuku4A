@@ -101,7 +101,6 @@ public class Bb extends DBAccess {
         register = "2016-10-12";
 
 //        addUser();
-
         room_num = 1;
         movietitle = "金閣寺";
         showdate = "1976-01-26";
@@ -111,12 +110,11 @@ public class Bb extends DBAccess {
 //        addSeat_num();
 //        seat_num = 19;
 //        addSeat_num();
-
     }
 
     public void addSeat_num() {
         System.out.println("beans.Bb.addSeat_num()");
-        
+
         if (seat_nums == null) {
             seat_nums = new ArrayList<>();
         }
@@ -143,75 +141,77 @@ public class Bb extends DBAccess {
     }
 
     public String goUsers() {
-        String path;
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        path = request.getRequestURL().toString();
-        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
-            path="db/users.xhtml";
-        else
-            path="users.xhtml";
-
-        return path;
+        return doGetRequestURL(1);
     }
 
     public String goRegister() {
-        String path;
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        path = request.getRequestURL().toString();
-        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
-            path="db/register.xhtml";
-        else
-            path="register.xhtml";
-
-        return path;
+        return doGetRequestURL(2);
     }
 
     public String goTheaters() {
-        String path;
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        path = request.getRequestURL().toString();
-        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
-            path="db/theaters.xhtml";
-        else
-            path="theaters.xhtml";
-
-        return path;
+        return doGetRequestURL(3);
     }
 
     public String goEdit() {
-        String path;
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        path = request.getRequestURL().toString();
-        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
-            path="db/edit.xhtml";
-        else
-            path="edit.xhtml";
-
-        return path;
+        return doGetRequestURL(4);
     }
 
     public String goIndex() {
-        String path;
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        path = request.getRequestURL().toString();
-        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
-            path="index.xhtml";
-        else
-            path="../index.xhtml";
-
-        return path;
+        return doGetRequestURL(5);
     }
 
     public String goSeat() {
-        String path;
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        path = request.getRequestURL().toString();
-        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
-            path="db/select_seat.xhtml";
-        else
-            path="select_seat.xhtml";
+        return doGetRequestURL(6);
+    }
 
-        return path;
+    public String doGetRequestURL(int which) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String url = request.getRequestURL().toString();
+        switch (which) {
+            case 1:
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                    url = "db/users.xhtml";
+                } else {
+                    url = "users.xhtml";
+                }
+                break;
+            case 2:
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                    url = "db/register.xhtml";
+                } else {
+                    url = "register.xhtml";
+                }
+                break;
+            case 3:
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                    url = "db/theaters.xhtml";
+                } else {
+                    url = "theaters.xhtml";
+                }
+                break;
+            case 4:
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                    url = "db/edit.xhtml";
+                } else {
+                    url = "edit.xhtml";
+                }
+                break;
+            case 5:
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                    url = "index.xhtml";
+                } else {
+                    url = "../index.xhtml";
+                }
+                break;
+            case 6:
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                    url = "db/select_seat.xhtml";
+                } else {
+                    url = "select_seat.xhtml";
+                }
+                break;
+        }
+        return url;
     }
 
 }
