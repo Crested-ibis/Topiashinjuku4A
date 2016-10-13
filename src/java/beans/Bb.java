@@ -11,6 +11,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -142,40 +143,75 @@ public class Bb extends DBAccess {
     }
 
     public String goUsers() {
-        // JSFのパスはブラウザで見るとわかるけど、特殊な感じ。よって、以下のパスでは動かないようだ
-//        String path;
-//        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-//        path = servletContext.getContextPath();
-//        path += "/db/users.xhtml";
-//        
-//        return path;
+        String path;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        path = request.getRequestURL().toString();
+        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
+            path="db/users.xhtml";
+        else
+            path="users.xhtml";
 
-        return "db/users.xhtml";
+        return path;
     }
 
     public String goRegister() {
-        return "db/register.xhtml";
+        String path;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        path = request.getRequestURL().toString();
+        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
+            path="db/register.xhtml";
+        else
+            path="register.xhtml";
+
+        return path;
     }
 
     public String goTheaters() {
-        return "db/theaters.xhtml";
+        String path;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        path = request.getRequestURL().toString();
+        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
+            path="db/theaters.xhtml";
+        else
+            path="theaters.xhtml";
+
+        return path;
     }
 
     public String goEdit() {
-        return "edit.xhtml";
+        String path;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        path = request.getRequestURL().toString();
+        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
+            path="db/edit.xhtml";
+        else
+            path="edit.xhtml";
+
+        return path;
     }
 
     public String goIndex() {
-        return "index.xhtml";
+        String path;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        path = request.getRequestURL().toString();
+        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
+            path="index.xhtml";
+        else
+            path="../index.xhtml";
+
+        return path;
     }
 
     public String goSeat() {
-        return "db/select_seat.xhtml";
-    }
+        String path;
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        path = request.getRequestURL().toString();
+        if(path.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml"))
+            path="db/select_seat.xhtml";
+        else
+            path="select_seat.xhtml";
 
-    // テストページ用
-    public String goOutput() {
-        return "output.xhtml";
+        return path;
     }
 
 }
