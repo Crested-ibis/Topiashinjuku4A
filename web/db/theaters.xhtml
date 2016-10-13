@@ -4,58 +4,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>シアター情報</title>
     </h:head>
     <h1>シアター情報</h1>
     <h:body>
-        <!--検索-->
-        <h:form>
-            上映情報 　　　
-            <h:outputText value="検索"/> 
-            <h:selectOneMenu value="#{bb.field_theaters}" >
-                <f:selectItem itemLabel="選択してください" itemValue=""/>
-                <f:selectItems value="#{bb.items_theaters_field}" /> 
-            </h:selectOneMenu>
-            <h:inputText value="#{bb.search_theaters}" p:placeholder="検索"/>
-            <h:selectOneMenu value="#{bb.operator_theaters}" >
-                <f:selectItem itemLabel="選択してください" itemValue=""/>
-                <f:selectItems value="#{bb.items_theaters_operator}" /> 
-            </h:selectOneMenu>
-            <h:commandButton value="検索" action="#{bb.reload()}"/> <h:commandButton value="新規登録" action="#{myBb.next()}"/>
-        </h:form>
-        <h:dataTable value="#{bb.allTheaters}" var="th">
-            <f:facet name="header">検索結果</f:facet>
-            <h:column>
-                <f:facet name="header">上映ID</f:facet>
-                <h:outputText value="#{th.id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">シアターNo</f:facet>
-                <h:outputText value="#{th.room_num}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">映画タイトル</f:facet>
-                <h:outputText value="#{th.movietitle}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">上映日時</f:facet>
-                <h:outputText value="#{th.showdate}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">上映時間</f:facet>
-                <h:outputText value="#{th.showtime}"/>
-            </h:column>
+        <ui:composition>
+            <!--検索-->
+            <h:form>
+                上映情報 　　　
+                <h:outputText value="検索"/> 
+                <h:selectOneMenu value="#{bb.field_theaters}" >
+                    <f:selectItem itemLabel="選択してください" itemValue=""/>
+                    <f:selectItems value="#{bb.items_theaters_field}" /> 
+                </h:selectOneMenu>
+                <h:inputText value="#{bb.search_theaters}" p:placeholder="検索"/>
+                <h:selectOneMenu value="#{bb.operator_theaters}" >
+                    <f:selectItem itemLabel="選択してください" itemValue=""/>
+                    <f:selectItems value="#{bb.items_theaters_operator}" /> 
+                </h:selectOneMenu>
+                <h:commandButton value="検索" action="#{bb.reload()}"/>
+            </h:form>
+            <h:dataTable value="#{bb.allTheaters}" var="th">
+                <f:facet name="header">検索結果</f:facet>
+                <h:column>
+                    <f:facet name="header">上映ID</f:facet>
+                    <h:outputText value="#{th.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">シアターNo</f:facet>
+                    <h:outputText value="#{th.room_num}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">映画タイトル</f:facet>
+                    <h:outputText value="#{th.movietitle}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">上映日時</f:facet>
+                    <h:outputText value="#{th.showdate}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">上映時間</f:facet>
+                    <h:outputText value="#{th.showtime}"/>
+                </h:column>
 
-            <h:column>
-                <f:facet name="header">座席</f:facet>
-                <h:dataTable value="#{th.seatses}" var="s">                    
-                    <h:column>
-                        <h:outputText value="#{s.reservedSeatId}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:column>
-        </h:dataTable>
+                <h:column>
+                    <f:facet name="header">座席</f:facet>
+                    <h:dataTable value="#{th.seatses}" var="s">                    
+                        <h:column>
+                            <h:outputText value="#{s.reservedSeatId}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:column>
+            </h:dataTable>
+        </ui:composition>
     </h:body>
 </html>

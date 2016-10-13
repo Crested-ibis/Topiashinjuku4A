@@ -6,17 +6,16 @@
     
     <h:head>
         <title>上映方法</title>
-        <h:outputStylesheet name="mystyle.css" library="css"/>
     </h:head>
     <h:body>
         <ui:composition>
             <h:form>
 
-                <h:panelGrid columns="4" columnClasses="c1">
-                    <h:commandLink action="#{myBb.goIndex()}"> トップ　</h:commandLink>    
-                    <h:commandLink action="#{myBb.goUsers()}">　ユーザ情報　</h:commandLink>
-                    <h:commandLink action="#{myBb.goTheaters()}">　上映情報　</h:commandLink>
-                    <h:commandLink action="#{myBb.goEdit()}">　詳細　</h:commandLink>
+                <h:panelGrid columns="4">
+                    <h:commandLink action="#{myBb.goIndex()}" class="c1">トップ</h:commandLink>    
+                    <h:commandLink action="#{myBb.goUsers()}" class="c1">ユーザ情報</h:commandLink>
+                    <h:commandLink action="#{myBb.goTheaters()}" class="c1">上映情報</h:commandLink>
+                    <h:commandLink action="#{myBb.goEdit()}" class="c1">詳細</h:commandLink>
                     <!--テスト用に登録ページに直接遷移できるようにしてある-->
                     <h:commandLink action="#{suzukiBb.goRegister()}">　登録（テスト用）</h:commandLink>
 

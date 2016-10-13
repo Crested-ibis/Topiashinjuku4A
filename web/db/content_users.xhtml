@@ -13,20 +13,21 @@
         <ui:composition>
             <h:form>
             <!--検索ー-->
-            ユーザ情報 <h:outputText value="検索"/>
-            <h:selectOneMenu value="#{bb.field_users}" >
+            ユーザ情報 <h:outputText value="検索" class="left"/>
+            <h:selectOneMenu value="#{bb.field_users}" class="left">
                 <f:selectItem itemLabel="選択してください" itemValue=""/>
                 <f:selectItems value="#{bb.items_users_field}" /> 
             </h:selectOneMenu>
-            <h:inputText value="" p:placeholder="入力してください"/>
-            <h:selectOneMenu value="#{bb.operator_users}" >
+            <h:inputText value="" p:placeholder="入力してください" class="left2"/>
+            <h:selectOneMenu value="#{bb.operator_users}" class="left2">
                 <f:selectItem itemLabel="選択してください" itemValue=""/>
                 <f:selectItems value="#{bb.items_users_operator}" /> 
             </h:selectOneMenu>
-            <h:commandButton value="検索" action="#{myBb.find}"/><h:commandButton value="新規登録" action="#{myBb.next()}"/>
+            <h:commandButton value="検索" action="#{myBb.find}" class="left"/>
+            <h:commandButton value="新規登録" action="#{myBb.next()}" class="left2"/>
             <!--結果-->
-            <h:dataTable value="" var="user">
-                <f:facet name="header">検索結果</f:facet>
+            <h:dataTable value="" var="user" cellspacing="0" border="1" rules="all" width="1000">
+                <f:facet name="header" class="bottom">検索結果</f:facet>
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                     <h:outputText value="#{bb.user_id}"/>

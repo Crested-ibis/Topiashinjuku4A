@@ -187,35 +187,35 @@ public class Bb extends DBAccess {
         String url = request.getRequestURL().toString();
         switch (which) {
             case 1:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
-                    url = "db/users.xhtml";
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                    url = "db/index_content_users.xhtml";
                 } else {
                     url = "users.xhtml";
                 }
                 break;
             case 2:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
-                    url = "db/register.xhtml";
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                    url = "db/index_content_register.xhtml";
                 } else {
                     url = "register.xhtml";
                 }
                 break;
             case 3:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
-                    url = "db/theaters.xhtml";
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
+                    url = "db/index_content_theaters.xhtml";
                 } else {
                     url = "theaters.xhtml";
                 }
                 break;
             case 4:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
                     url = "db/edit.xhtml";
                 } else {
                     url = "edit.xhtml";
                 }
                 break;
             case 5:
-                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index.xhtml")) {
+                if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
                     url = "index.xhtml";
                 } else {
                     url = "../index.xhtml";
@@ -228,6 +228,8 @@ public class Bb extends DBAccess {
                     url = "select_seat.xhtml";
                 }
                 break;
+                default:
+                    System.out.println("該当なし");
         }
         return url;
     }

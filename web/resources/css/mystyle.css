@@ -1,4 +1,13 @@
 .c1{
-    margin-right:100px; 
+    margin-right: 20px; 
 }
-
+.left{
+    margin-left: 20px;
+}
+.left2{
+    margin-left: 5px;
+}
+.bottom{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

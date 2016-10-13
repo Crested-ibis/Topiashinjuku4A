@@ -5,15 +5,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>テンプレート</title>
-        <h:outputStylesheet name="mystyle.css" library="css" />
     </h:head>
     <h:body>
         <h:form>
         <ui:composition template="/db/template.xhtml">
             <ui:define name="top">
-                <ui:include src="index_1.xhtml" />
-            </ui:define>
-            <ui:define name="content">
+                <ui:include src="index.xhtml" />
             </ui:define>
         </ui:composition>
             </h:form>
