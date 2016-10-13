@@ -190,35 +190,35 @@ public class Bb extends DBAccess {
                 if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
                     url = "db/index_content_users.xhtml";
                 } else {
-                    url = "users.xhtml";
+                    url = "index_content_users.xhtml";
                 }
                 break;
             case 2:
                 if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
                     url = "db/index_content_register.xhtml";
                 } else {
-                    url = "register.xhtml";
+                    url = "index_content_register.xhtml";
                 }
                 break;
             case 3:
                 if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
                     url = "db/index_content_theaters.xhtml";
                 } else {
-                    url = "theaters.xhtml";
+                    url = "index_content_theaters.xhtml";
                 }
                 break;
             case 4:
                 if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
-                    url = "db/edit.xhtml";
+                    url = "db/index_contentedit.xhtml";
                 } else {
-                    url = "edit.xhtml";
+                    url = "index_content_edit.xhtml";
                 }
                 break;
             case 5:
                 if (url.equals("http://localhost:8080/Topiashinjuku4A/faces/index_2.xhtml")) {
-                    url = "index.xhtml";
+                    url = "index_2.xhtml";
                 } else {
-                    url = "../index.xhtml";
+                    url = "../index_2.xhtml";
                 }
                 break;
             case 6:
