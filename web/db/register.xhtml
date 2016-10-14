@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
 
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
-      <h:head>
+    <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
@@ -30,7 +30,7 @@
                     </h:inputText><h:outputText value="例 xxxxx@gmail.com　○" />
                     生年月日
                     <h:inputText value="#{bb.age}" >
-                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+<!--                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>-->
                     </h:inputText><h:outputText value="例　2015/1/1　×　2015-01-01 ○" />
                     性別　<h:selectOneRadio value="#{bb.sex}">
                         <f:selectItems value="#{bb.items_sex}"/>
@@ -42,7 +42,7 @@
                     </h:inputText><h:outputText value="何文字～何文字以内" />
                     登録日
                     <h:inputText value="#{bb.register}" >
-                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+                        <!--<f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>-->
                     </h:inputText><h:outputText value="例 2015/1/1 ×　2015-01-01　○" />
                 </h:panelGrid>
                 <h:panelGrid columns="2">
@@ -62,25 +62,29 @@
                     </h:inputText>
                     上映月日
                     <h:inputText value="#{bb.showdate}" >
-                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>
+                        <!--<f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="Asia/Tokyo"/>-->
                     </h:inputText>
                     上映時間
                     <h:inputText value="#{bb.showtime}" >
-                        <f:convertDateTime type="time" pattern="HH:mm" timeZone="Asia/Tokyo"/>  
+                        <!--<f:convertDateTime type="time" pattern="HH:mm" timeZone="Asia/Tokyo"/>-->  
                     </h:inputText>
                 </h:panelGrid>
-                <h:panelGrid columns="3">
-                    席
+                <h:panelGrid columns="4">
+                    席番号
                     <h:form>
-                        <h:inputText value="#{bb.seat_num}"/>
+                        <h:inputText value="#{bb.seat_num}" size="2"/>
                         <h:commandButton action="#{bb.addSeat_num()}" value="予約">
-                            <f:ajax execute="@form"/>
+                            <!--<f:ajax execute=""/>-->
                         </h:commandButton>
                     </h:form>
+                    <h:outputText value="   新たに予約する席番号："/>
+                    <ui:repeat value="#{bb.seat_nums}" var="n">
+                        <h:outputText value="#{n}"/><h:outputText value=" "/>
+                    </ui:repeat>
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <h:commandButton action="#{bb.addTheater()}" value="登録" />
-                    <h:commandButton value="クリア"/>
+                    <h:commandButton action="#{bb.theatersVarClear()}" value="クリア"/>
                 </h:panelGrid>
             </h:form>  
         </ui:composition>
